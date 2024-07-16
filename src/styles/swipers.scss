@@ -1,0 +1,237 @@
+@import "./vars";
+
+.projects-swiper {
+  height: fit-content;
+  padding-bottom: 3.2rem !important;
+  position: relative;
+
+  .swiper-wrapper {
+    height: 315px;
+    padding-top: 25px;
+    margin-bottom: 40px;
+
+    .swiper-slide {
+      width: fit-content;
+      height: 100%;
+      border-radius: 20px;
+      transition: box-shadow 300ms;
+      box-shadow: none;
+
+      & > div {
+
+        img {
+          transition: filter 300ms;
+          filter: grayscale(100%) brightness(80%) !important;
+        }
+      }
+    }
+
+    .swiper-slide-active {
+
+      & > div {
+
+        img {
+          filter: grayscale(0%) brightness(100%) !important;
+        }
+      }
+    }
+  }
+
+  .swiper-pagination-horizontal {
+    height: fit-content;
+    position: absolute;
+    top: auto !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    z-index: -1;
+    transform: translateX(-50%);
+
+    .swiper-pagination-bullet {
+      border-radius: 0;
+      background-color: $grey-light;
+    }
+
+    .swiper-pagination-bullet-active {
+      border-radius: 50%;
+      background-color: $white-500;
+      box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+.about-us-swiper {
+  height: fit-content;
+  width: 100%;
+  margin-top: 6rem;
+  padding-bottom: 2.2rem !important;
+  position: relative;
+
+  .swiper-pagination-horizontal {
+    height: fit-content;
+    position: absolute;
+    top: auto !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    z-index: -1;
+    transform: translateX(-50%);
+
+    .swiper-pagination-bullet {
+      border-radius: 0;
+      background-color: $grey-light;
+    }
+
+    .swiper-pagination-bullet-active {
+      border-radius: 50%;
+      background-color: $white-500;
+      box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .swiper-wrapper {
+    height: 31.8rem;
+
+    .swiper-slide {
+      width: calc(100vw - 5rem);
+      height: 100%;
+      border-radius: 20px;
+
+      & > article {
+
+        @media ($mobile) {
+          &::after {
+            content: "";
+            position: absolute;
+            top: -30%;
+            left: auto;
+            right: -30%;
+            transform: rotate(90deg);
+            --width: 0;
+            --height: 0;
+            width: var(--width);
+            height: var(--height);
+            filter: blur(7rem);
+            @include mars-gradient;
+            z-index: -1;
+            transition: width 300ms, height 300ms;
+          }
+        }
+      }
+    }
+
+    .swiper-slide-active {
+
+      & > article {
+
+        @media ($mobile) {
+          &::after {
+            --width: 27.8rem;
+            --height: 30rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.team-swiper {
+  height: 75vh;
+  width: 100%;
+
+  .swiper-wrapper {
+
+    .swiper-slide {
+      width: fit-content;
+
+      img {
+        width: 100%;
+        max-width: calc(100vw - 7.4rem);
+        max-height: 75vh;
+        object-fit: cover;
+        border-radius: 1rem;
+      }
+    }
+  }
+}
+
+.other-employee-swiper {
+  width: 100%;
+  height: 17.7rem;
+
+  .swiper-wrapper {
+    transition-timing-function: linear;
+    transition-delay: 0s;
+    transition-duration: 0s;
+
+    .swiper-slide {
+      width: 17.7rem !important;
+      max-width: 17.7rem;
+      height: 17.7rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+.employee-swiper {
+  height: fit-content;
+  width: 100%;
+
+  .swiper-wrapper {
+    height: fit-content;
+    //padding-inline: 3.3rem;
+
+    .swiper-slide {
+      width: calc(100vw - 6.6rem) !important;
+      height: 50rem;
+    }
+  }
+}
+
+.about-us-page-swiper {
+  height: fit-content;
+  width: 100%;
+  margin-top: 6rem;
+
+  .swiper-wrapper {
+    height: 31.8rem;
+
+    .swiper-slide {
+      width: calc(100vw - 5rem);
+      height: 100%;
+      border-radius: 20px;
+
+      & > article {
+
+        @media ($mobile) {
+          &::after {
+            content: "";
+            position: absolute;
+            top: -30%;
+            left: auto;
+            right: -30%;
+            transform: rotate(90deg);
+            --width: 0;
+            --height: 0;
+            width: var(--width);
+            height: var(--height);
+            filter: blur(7rem);
+            @include mars-gradient;
+            z-index: -1;
+            transition: width 300ms, height 300ms;
+          }
+        }
+      }
+    }
+  }
+}
+
+.project-page-mobile-swiper {
+  width: 100%;
+
+  .swiper-wrapper {
+
+    .swiper-slide {
+      width: fit-content;
+
+    }
+  }
+}

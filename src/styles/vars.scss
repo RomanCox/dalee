@@ -1,0 +1,78 @@
+$less-black: #151515;
+$black: #121212;
+$black-900: #000;
+
+
+$grey-lightest: #c0c0c0;
+$grey-light: #484848;
+$grey-middle: #383838;
+$grey-light-dark: #363636;
+$grey-dark: #323232;
+$grey-darkest: #202020;
+
+
+$white-100: #e3e3e3;
+$white-200: #dcdcdc;
+$white-300: #dbdbdb;
+$white-400: #dadada;
+$white-500: #d3d3d3;
+
+$orange-100: #f15830;
+$orange-200: #e3290a;
+
+$red-100: #dd2e00;
+$red-200: #ff0302;
+
+$blue-100: #2aabee;
+$blue-200: #0077ff;
+
+$bg-color: $black;
+$text-color: $white-200;
+$accent-color: $orange-100;
+$text-color-secondary: $grey-lightest;
+$danger-color: $red-100;
+$overlay-color: rgba($bg-color, 0.7);
+
+$header-h: 10.3rem;
+
+$mobile-buttons-z-index: 19;
+$modal-z-index: 20;
+
+$mobile: "max-width: 767px";
+
+@mixin mars-gradient {
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #4d0a05 0%,
+    #780a00 13.5%,
+    #af0b00 27.5%,
+    #bc0d00 42.5%,
+    #dd2e00 58.5%,
+    #e23900 69%,
+    #e87f36 84.51%,
+    #dca46e 99.74%
+  );
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin link-hover-effect {
+  transition: color 0.3s ease;
+
+  @include hover {
+    &:hover {
+      color: $accent-color;
+    }
+    &:active {
+      color: $accent-color;
+      text-decoration: underline;
+    }
+  }
+}

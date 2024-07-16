@@ -1,0 +1,240 @@
+.section {
+  padding: 22.3rem 0 21rem;
+  position: relative;
+  
+  @media ($mobile) {
+    min-height: 100vh;
+    padding: 0 1.6rem;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+  }
+
+  .logo_mobile {
+    display: none;
+
+    @media ($mobile) {
+      display: block;
+      width: 19.1rem;
+      height: auto;
+      margin: 9.1rem auto 0;
+    }
+  }
+
+  .container {
+    max-width: 105rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    @media ($mobile) {
+      align-self: center;
+    }
+
+    .title {
+      margin-bottom: 1rem;
+
+      @media ($mobile) {
+        margin-bottom: 4.4rem;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+        }
+      }
+    }
+
+    .location {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+
+      @media ($mobile) {
+        font-size: 1.6rem;
+        margin-bottom: 1.8rem;
+        color: rgba($text-color, 0.6);
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .description {
+      font-size: 2.4rem;
+      max-width: 68rem;
+      margin: 0 auto 6rem;
+
+      @media ($mobile) {
+        font-size: 2rem;
+        max-width: 26rem;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .arrow {
+      margin: 0 auto;
+      position: relative;
+      opacity: 0;
+      width: 5.9rem;
+      height: 6.7rem;
+      display: flex;
+      color: $text-color;
+      animation: bounce 2s infinite ease-in-out;
+
+      @media ($mobile) {
+        width: 2.4rem;
+        height: 2.4rem;
+
+        &::after {
+          width: 2.4rem;
+          height: 2.4rem;
+          filter: blur(5px);
+          top: 0;
+        }
+
+        &:active {
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      &::after {
+        content: "";
+        opacity: 0;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+        width: 9.3rem;
+        height: 9.3rem;
+        border-radius: 100%;
+        filter: blur(20px);
+        background: linear-gradient(
+                        129deg,
+                        #4d0a05 0%,
+                        #780a00 13.5%,
+                        #af0b00 27.5%,
+                        #bc0d00 42.5%,
+                        #dd2e00 58.5%,
+                        #e23900 69%,
+                        #e87f36 84.51%,
+                        #dca46e 99.74%
+        );
+        transition: opacity 0.3s ease;
+      }
+
+      @include hover {
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .backgroundContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+
+    @media ($mobile) {
+      display: none;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .background {
+    z-index: -1;
+    object-fit: cover;
+
+    @media ($mobile) {
+      display: none;
+    }
+  }
+
+  .background_mobile {
+    display: none;
+
+    @media ($mobile) {
+      display: block;
+      z-index: -1;
+      object-fit: cover;
+    }
+  }
+}
+
+.macOsTitle {
+  line-height: 23rem;
+
+  @media ($mobile) {
+    line-height: 7rem;
+  }
+}
+
+.macOsLocation {
+  transform: translateY(1rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
+  }
+}
+
+.macOsDescription {
+  transform: translateY(-2rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

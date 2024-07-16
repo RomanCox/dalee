@@ -1,0 +1,38 @@
+.section {
+  margin: 24rem 3.7rem;
+  display: grid;
+  grid-template-columns: 38rem auto 38rem 38rem 38rem;
+  grid-auto-rows: 40rem;
+  gap: 3rem;
+
+  @media ($mobile) {
+    //margin: 6.5rem 0;
+    margin: 3rem 0 6.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.7rem;
+  }
+
+  .titleWrapper {
+    @media ($mobile) {
+      margin-inline: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.7rem;
+    }
+
+    & > div {
+      h2 {
+        @media ($mobile) {
+          line-height: 3.6rem;
+        }
+      }
+    }
+
+    & > p {
+      @media ($mobile) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

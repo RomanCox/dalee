@@ -1,0 +1,77 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .error {
+    position: absolute;
+    padding-left: 5rem;
+    top: 100%;
+    margin-top: 0.6rem;
+    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    @media ($mobile) {
+      font-size: 1.6rem;
+      position: relative;
+      padding-left: 0;
+    }
+
+    svg {
+      width: 3.5rem;
+      height: auto;
+      color: $danger-color;
+
+      @media ($mobile) {
+        width: 2.5rem;
+      }
+    }
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+
+  .icon_container {
+    position: absolute;
+    left: 4.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.4rem;
+    height: 3.4rem;
+
+    @media ($mobile) {
+      left: 2.7rem;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .input {
+    width: 100%;
+    border: 1px solid $text-color;
+    border-radius: 2rem;
+    padding: 3.5rem 4.2rem 3.5rem 10.3rem;
+    font-size: 2.4rem;
+    caret-color: rgba($text-color, 0.5);
+
+    &::placeholder {
+      color: rgba($text-color, 0.5);
+    }
+
+    @media ($mobile) {
+      border-radius: 1rem;
+      padding: 1.7rem 2.7rem 1.7rem 5.8rem;
+      font-size: 1.6rem;
+    }
+  }
+}

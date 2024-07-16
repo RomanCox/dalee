@@ -1,0 +1,92 @@
+.container {
+  position: fixed;
+  top: calc($header-h + 3.5rem);
+  left: 50%;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  gap: 1.8rem;
+  max-width: 47.1rem;
+  width: 100%;
+  backdrop-filter: blur(113px);
+  box-shadow: inset 2px 0 4px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 68px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem 1.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2rem) translateX(-50%);
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%) rotate(90deg);
+    --width: 0;
+    --height: 0;
+    width: var(--width);
+    height: var(--height);
+    transition: width 300ms ease, height 300ms ease;
+    filter: blur(7rem);
+    -webkit-backdrop-filter: blur(7rem);
+    @include mars-gradient;
+    z-index: -1;
+  }
+
+  @include hover {
+    &:hover::after {
+      --width: 27.8rem;
+      --height: 24.6rem;
+    }
+  }
+
+  .icon {
+    max-width: 4.3rem;
+    height: 4.3rem;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .text {
+    max-width: 33.6rem;
+  }
+
+  .close_btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+.hoverEffect {
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%) rotate(90deg);
+    --width: 0;
+    --height: 0;
+    width: var(--width);
+    height: var(--height);
+    transition: width 300ms ease, height 300ms ease;
+    filter: blur(7rem);
+    -webkit-backdrop-filter: blur(7rem);
+    @include mars-gradient;
+    z-index: -1;
+  }
+
+  @include hover {
+    &:hover::after {
+      --width: 27.8rem;
+      --height: 24.6rem;
+    }
+  }
+}

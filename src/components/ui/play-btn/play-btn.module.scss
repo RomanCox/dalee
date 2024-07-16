@@ -1,0 +1,59 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  background: #131313;
+
+  &.blurred {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(113.19999694824219px);
+    box-shadow: inset 2px 0 4px 0 rgba(255, 255, 255, 0.15),
+      inset 0 0 68px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  svg {
+    z-index: 1;
+    width: 3rem;
+    height: auto;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background: linear-gradient(
+      129deg,
+      #4d0a05 0%,
+      #780a00 13.5%,
+      #af0b00 27.5%,
+      #bc0d00 42.5%,
+      #dd2e00 58.5%,
+      #e23900 69%,
+      #e87f36 84.51%,
+      #fff0e1 99.74%
+    );
+    transition: opacity 0.3s ease;
+  }
+
+  @include hover {
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media ($mobile) {
+    svg {
+      width: 2.6rem;
+      transform: translateX(0.3rem);
+    }
+  }
+}

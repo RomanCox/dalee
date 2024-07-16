@@ -1,0 +1,166 @@
+.sectionWrapper {
+  padding: 22.3rem 3.7rem 0;
+  margin-bottom: 27.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.4rem;
+  position: relative;
+  
+  @media ($mobile) {
+    height: 100dvh;
+    padding: 0 1.6rem;
+    margin-bottom: 0;
+  }
+
+  .logo_mobile {
+    display: none;
+
+    @media ($mobile) {
+      display: block;
+      width: 19.1rem;
+      height: auto;
+      margin: 12rem auto 0;
+    }
+  }
+
+  .titleContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media ($mobile) {
+      margin-top: 15.8rem;
+    }
+
+    .location {
+      font-size: 2rem;
+
+      @media ($mobile) {
+        font-size: 1.6rem;
+        color: rgba($text-color, 0.6);
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .title {
+
+      .mask {
+
+        .text {}
+      }
+    }
+
+    .description {
+
+      .mask {
+
+        .text {}
+      }
+    }
+  }
+
+  .location {
+    font-size: 2rem;
+
+    @media ($mobile) {
+      margin-top: 15.8rem;
+      font-size: 1.6rem;
+      color: rgba($text-color, 0.6);
+    }
+
+    .mask {
+      display: inline-flex;
+      overflow: hidden;
+      position: relative;
+
+      .text {
+        transform: translateY(100%);
+
+        @media ($mobile) {
+          line-height: 1.1;
+        }
+      }
+    }
+  }
+
+  .titleMobile {
+    font-size: 6.4rem;
+    line-height: 100%;
+  }
+
+  .descriptionMobile {
+    width: 28.5rem;
+    font-size: 2rem;
+    line-height: 120%;
+    text-align: center;
+  }
+
+  .arrow {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    &::after {
+      width: 2.4rem;
+      height: 2.4rem;
+      filter: blur(5px);
+      top: 0;
+    }
+
+    &:active {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  .backgroundContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+
+    @media ($mobile) {
+      display: none;
+    }
+
+    img {
+      height: auto !important;
+      object-fit: cover;
+    }
+  }
+
+  .background_mobile {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,214 @@
+.section {
+  margin-bottom: 36rem;
+
+  @media ($mobile) {
+    margin-bottom: 6rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    font-size: 11rem;
+    align-items: center;
+    justify-content: center;
+
+    @media ($mobile) {
+      font-size: 3.2rem;
+      margin-bottom: 7.1rem;
+    }
+
+    .rowContainer {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+
+      .image_container {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        height: 10rem;
+        width: 25.5rem;
+        border-radius: 20.2rem;
+        opacity: 0;
+        transition: opacity var(--duration) ease;
+
+        @media ($mobile) {
+          height: 3.6rem;
+          width: 8rem;
+        }
+
+        img {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      .displayedImage {
+        opacity: 1;
+      }
+
+      .text {
+        font-size: 12.8rem;
+        line-height: 12.2rem;
+
+        @media ($mobile) {
+          font-size: 3.2rem;
+          line-height: 3.6rem;
+        }
+
+        span {
+          color: $bg-color;
+          transition: color 100ms ease;
+        }
+
+        .coloredSymbol {
+          color: $text-color;
+        }
+      }
+    }
+
+    .video_container {
+      position: relative;
+
+      .play_btn {
+        position: absolute;
+        top: 2.5rem;
+        right: -4.5rem;
+        width: 10rem;
+        height: 10rem;
+        opacity: 0;
+        transition: opacity var(--duration) ease;
+
+        svg {
+          transform: translateX(0.4rem);
+        }
+      }
+
+      .displayedImage {
+        opacity: 1;
+      }
+    }
+  }
+
+  .video_preview_mobile {
+    display: none;
+  }
+
+  .row {
+    display: flex;
+    gap: 1.4rem;
+    align-items: center;
+
+    .text {
+      font-size: 12.8rem;
+
+      @media ($mobile) {
+        line-height: 3.6rem;
+      }
+
+      span {
+        color: $bg-color;
+        transition: color 100ms ease;
+      }
+
+      .coloredSymbol {
+        color: $text-color;
+      }
+    }
+  }
+
+  .image_container {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 10rem;
+    width: 25.5rem;
+    border-radius: 20.2rem;
+    opacity: 0;
+    transition: opacity var(--duration) ease;
+
+    @media ($mobile) {
+      height: 3.6rem;
+      width: 8rem;
+    }
+
+    img {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .displayedImage {
+    opacity: 1;
+  }
+
+  @media ($mobile) {
+    margin-bottom: 6rem;
+
+    .container_mobile {
+      font-size: 3.2rem;
+      margin-bottom: 7.1rem;
+
+      h3 {
+        line-height: 3.6rem;
+      }
+
+      .image_container {
+        width: 7.9rem;
+        height: 3rem;
+        opacity: 1;
+      }
+
+      .row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .video_preview_mobile {
+    display: block;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    //margin: 0 3.6rem;
+    margin: 0 2.6rem;
+
+    .play_mobile {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7.1rem;
+      height: 7.1rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
+
+.lastRowsContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+
+@keyframes showImage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

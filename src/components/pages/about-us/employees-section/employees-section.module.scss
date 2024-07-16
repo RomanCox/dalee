@@ -1,0 +1,72 @@
+.sectionWrapper {
+  margin-bottom: 30rem;
+  padding-inline: 3.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 7.6rem;
+
+  @media ($mobile) {
+    padding-inline: 0;
+    margin-bottom: 3rem;
+    gap: 2.4rem;
+  }
+
+  .teamSwiper {
+    width: 100%;
+    position: relative;
+
+    .swiperLeftBtn,
+    .swiperRightBtn {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+      background: $grey-middle;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+
+      .buttonIcon {
+        width: 2rem;
+      }
+    }
+
+    .swiperLeftBtn {
+      left: -3rem;
+
+      .buttonIcon {
+        transform: rotate(90deg);
+      }
+    }
+
+    .swiperRightBtn {
+      right: -3rem;
+
+      .buttonIcon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .employeesCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    row-gap: 7.6rem;
+  }
+
+  .otherEmployeeSliderContainer {
+
+    .otherEmployeeSlide {
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+}

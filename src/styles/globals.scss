@@ -1,0 +1,50 @@
+@import "./normalize";
+@import "./vars";
+
+html {
+  font-size: calc(100vw / 1920 * 10);
+  scroll-margin-top: $header-h;
+
+  @media ($mobile) {
+    font-size: calc(100vw / 375 * 10);
+  }
+}
+
+body {
+  background-color: $bg-color;
+  color: $text-color;
+  scrollbar-width: thin;
+}
+
+html,
+body {
+  scrollbar-gutter: stable;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-saar-sp-demo), sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 21rem;
+}
+
+h2 {
+  font-size: 17rem;
+}
+
+@media ($mobile) {
+  h1 {
+    font-size: 6.4rem;
+  }
+
+  h2 {
+    font-size: 4.8rem;
+  }
+}

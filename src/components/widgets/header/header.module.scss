@@ -1,0 +1,66 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: $header-h;
+  padding: 0 6.4rem;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  font-weight: 500;
+
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: inset 2px 0 4px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 68px 0 rgba(255, 255, 255, 0.05);
+  will-change: width;
+  transition: left 0.3s ease, top 0.3s ease, width 0.3s ease,
+    border-radius 0.3s ease;
+
+  .logo,
+  .links_container {
+    flex: 1;
+  }
+
+  .logo {
+    display: block;
+    width: fit-content;
+
+    a {
+      width: 21.9rem;
+      height: auto;
+      display: block;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3rem;
+  }
+
+  a {
+    @include link-hover-effect;
+  }
+
+  &.scrolled {
+    left: 3.7rem;
+    top: 2.5rem;
+    width: calc(100% - 7.4rem);
+    border-radius: 2.4rem;
+  }
+
+  @media ($mobile) {
+    display: none;
+  }
+}

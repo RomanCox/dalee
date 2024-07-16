@@ -1,0 +1,56 @@
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  li {
+
+    svg {
+      transition: color 0.3s ease;
+    }
+
+    a {
+      @media ($mobile) {
+        max-width: 3.2rem;
+        max-height: 3.2rem;
+      }
+    }
+  }
+
+  .telegram {
+    &:hover {
+      color: $blue-100;
+    }
+  }
+
+  .vk {
+    &:hover {
+      color: $blue-200;
+    }
+  }
+
+  .youtube {
+    &:hover {
+      color: $red-200;
+    }
+  }
+
+  .dzen {
+    &:hover {
+      color: $black-900;
+    }
+  }
+
+  .dprofile {
+    &:hover {
+      color: $black-900;
+    }
+  }
+
+  .behance {
+    &:hover {
+      color: $blue-200;
+    }
+  }
+}

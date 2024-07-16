@@ -1,0 +1,47 @@
+.section {
+  margin: 24rem 3.7rem;
+  display: grid;
+  grid-template-columns: 38rem 1fr 38rem 38rem;
+  grid-auto-rows: 40rem;
+  gap: 3rem;
+  position: relative;
+
+  @media ($mobile) {
+    //margin: 8.3rem 3.6rem;
+    margin: 8.3rem 2.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .titleWrapper {
+    padding-block: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $bg-color;
+    z-index: 1;
+
+    @media ($mobile) {
+      padding-block: 1rem 0;
+    }
+
+    .title {
+      font-size: 4.8rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .card_wrapper {
+    perspective: 500px;
+
+    .card {
+      height: 54.5rem;
+
+      @media ($mobile) {
+        height: 19.3rem;
+      }
+    }
+  }
+}

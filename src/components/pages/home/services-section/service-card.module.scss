@@ -1,0 +1,141 @@
+.card {
+
+  &:not(.title) {
+    overflow: hidden;
+    position: relative;
+    padding: 4.4rem 3.6rem;
+
+    @media ($mobile) {
+      padding: 2.6rem;
+    }
+
+    .title {
+      font-size: 3.2rem;
+      margin-bottom: 1.6rem;
+      position: relative;
+      z-index: 1;
+
+      @media ($mobile) {
+        font-size: 3.6rem;
+      }
+    }
+
+    .description {
+      font-size: 2rem;
+      position: relative;
+      z-index: 1;
+
+      @media ($mobile) {
+        font-size: 1.6rem;
+      }
+    }
+
+    //&:nth-child(4) {
+    //  &::after {
+    //    content: "";
+    //    position: absolute;
+    //    top: -7.3rem;
+    //    right: -4.6rem;
+    //    transform: translate(-50%, -50%);
+    //    width: 27.8rem;
+    //    height: 24.6rem;
+    //    filter: blur(7rem);
+    //    border-radius: 50%;
+    //    background: radial-gradient(
+    //      circle,
+    //      #4d0a05 0%,
+    //      #780a00 13.5%,
+    //      #af0b00 27.5%,
+    //      #bc0d00 42.5%,
+    //      #dd2e00 58.5%,
+    //      #e23900 69%,
+    //      #e87f36 84.51%,
+    //      #dca46e 99.74%
+    //    );
+    //    transform: rotate(90deg);
+    //    z-index: -1;
+    //  }
+    //}
+    //&:nth-child(5) {
+    //  &::after {
+    //    content: "";
+    //    position: absolute;
+    //    bottom: -7.3rem;
+    //    left: -4.6rem;
+    //    transform: translate(-50%, -50%);
+    //    width: 27.8rem;
+    //    height: 24.6rem;
+    //    filter: blur(7rem);
+    //    border-radius: 50%;
+    //    background: radial-gradient(
+    //      circle,
+    //      #4d0a05 0%,
+    //      #780a00 13.5%,
+    //      #af0b00 27.5%,
+    //      #bc0d00 42.5%,
+    //      #dd2e00 58.5%,
+    //      #e23900 69%,
+    //      #e87f36 84.51%,
+    //      #dca46e 99.74%
+    //    );
+    //    transform: rotate(90deg);
+    //    z-index: -1;
+    //  }
+    //}
+  }
+
+  &.title {
+    .title {
+      margin-bottom: 5.6rem;
+    }
+    .description {
+      font-size: 2.4rem;
+      max-width: 35.2rem;
+    }
+  }
+
+  @media ($mobile) {
+    &.title {
+      display: none;
+    }
+  }
+}
+
+.circleBottomLeft,
+.circleTopRight {
+  &::before {
+    content: "";
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 27.8rem;
+    height: 24.6rem;
+    filter: blur(7rem);
+    border-radius: 50%;
+    background: radial-gradient(
+                    circle,
+                    #4d0a05 0%,
+                    #780a00 13.5%,
+                    #af0b00 27.5%,
+                    #bc0d00 42.5%,
+                    #dd2e00 58.5%,
+                    #e23900 69%,
+                    #e87f36 84.51%,
+                    #dca46e 99.74%
+    );
+    z-index: -1;
+  }
+}
+
+.circleBottomLeft {
+  &::before {
+    top: 100%;
+    right: 25%;
+  }
+}
+
+.circleTopRight {
+  &::before {
+    bottom: 25%;
+    left: 75%;
+  }
+}

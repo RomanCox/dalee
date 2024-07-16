@@ -1,0 +1,8 @@
+{
+  "bracketSameLine": true,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "quoteProps": "as-needed",
+  "semi": true,
+  "trailingComma": "all"
+}

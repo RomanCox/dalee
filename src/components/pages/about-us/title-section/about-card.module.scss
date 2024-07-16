@@ -1,0 +1,129 @@
+.card {
+  &:not(.title) {
+    width: 38rem;
+    height: 40rem;
+    overflow: hidden;
+    position: relative;
+    padding: 3.3rem 0;
+    justify-content: flex-end;
+
+    .title {
+      font-size: 12.8rem;
+      font-family: var(--font-adderley), sans-serif;
+      line-height: 9rem;
+      margin: 0 1.5rem 1rem;
+      font-weight: 700;
+    }
+
+    .startWithOne {
+      margin: 0 0.7rem 1rem;
+    }
+
+    .description {
+      font-size: 2rem;
+      font-family: var(--font-saar-sp-demo), sans-serif;
+      margin: 0 2rem;
+    }
+
+    &:nth-child(5) {
+      grid-column: span 2;
+    }
+  }
+
+  &.wide{
+    width: calc(100% - (3 * 38rem) - (3 * 3rem));
+  }
+
+  &.title {
+    width: calc(100% - 82rem);
+    align-items: center;
+
+    .title {
+      margin-bottom: 5.6rem;
+      text-align: center;
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+        }
+      }
+    }
+
+    .description {
+      font-size: 2.4rem;
+      max-width: 50rem;
+      text-align: center;
+    }
+  }
+}
+
+@media ($mobile) {
+  .card {
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    &:not(.title) {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
+      .title {
+        font-size: 9.6rem;
+        width: fit-content;
+        margin: 0;
+      }
+
+      .description {
+        margin: 0;
+        font-size: 2.8rem;
+        line-height: 2.8rem;
+      }
+    }
+  }
+}
+
+.circleBottomLeft,
+.circleTopRight {
+  &::before {
+    content: "";
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 27.8rem;
+    height: 24.6rem;
+    filter: blur(7rem);
+    border-radius: 50%;
+    background: radial-gradient(
+                    circle,
+                    #4d0a05 0%,
+                    #780a00 13.5%,
+                    #af0b00 27.5%,
+                    #bc0d00 42.5%,
+                    #dd2e00 58.5%,
+                    #e23900 69%,
+                    #e87f36 84.51%,
+                    #dca46e 99.74%
+    );
+    z-index: -1;
+  }
+}
+
+.circleBottomLeft {
+  &::before {
+    top: 75%;
+    right: 50%;
+  }
+}
+
+.circleTopRight {
+  &::before {
+    bottom: 35%;
+    left: 85%;
+  }
+}

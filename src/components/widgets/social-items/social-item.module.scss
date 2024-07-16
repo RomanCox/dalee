@@ -1,0 +1,14 @@
+.container {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 0.6rem;
+  background: $grey-darkest;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 1.9rem;
+    height: auto;
+  }
+}

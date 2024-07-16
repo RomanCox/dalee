@@ -1,0 +1,85 @@
+.employeeCard {
+  width: calc((100% - 9rem) / 4);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  @media ($mobile) {
+    width: calc(100vw - 6.6rem);
+    gap: 1rem;
+  }
+
+  .imageContainer {
+    width: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 2rem;
+      filter: grayscale(100%) brightness(80%);
+
+      &:hover {
+        filter: grayscale(0) brightness(100%);
+      }
+
+      @media ($mobile) {
+        max-height: 43.7rem;
+      }
+    }
+
+    .quoteContainer {
+      width: 49rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: $bg-color;
+      opacity: 0;
+      transition: opacity 300ms ease;
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      z-index: 1;
+
+      @media ($mobile) {
+        display: none;
+      }
+
+      .quote {
+        font-size: 2.4rem;
+      }
+    }
+
+    .quoteView {
+      opacity: 1;
+    }
+  }
+
+  .employeeCardTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .name {
+      font-family: var(--font-saar-sp-demo), sans-serif;
+      font-size: 3.2rem;
+      white-space: pre-wrap;
+
+      @media ($mobile) {
+        font-size: 2.8rem;
+      }
+    }
+
+    .position {
+      font-weight: 700;
+      font-family: Lato, sans-serif;
+      font-size: 2rem;
+      line-height: 2.4rem;
+      color: $grey-light-dark;
+      white-space: pre-wrap;
+
+      @media ($mobile) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

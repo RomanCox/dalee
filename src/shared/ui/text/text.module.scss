@@ -1,0 +1,70 @@
+.titleWrapper {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+
+  .titleWrapper {
+    display: flex;
+    gap: 0.875rem;
+
+    .title {
+    }
+
+    .addTitle {
+    }
+  }
+
+  .text {
+  }
+}
+
+
+.error {
+
+  .titleWrapper {
+
+    .title {
+      color: red;
+    }
+
+    .addTitle {
+      color: red;
+    }
+  }
+
+  .text {
+    color: red;
+  }
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.size_m {
+  .title {}
+
+  .text {}
+}
+
+.size_l {
+  .title {
+  }
+
+  .text {
+  }
+}
+
+.size_s {
+  .title {}
+
+  .text {}
+}

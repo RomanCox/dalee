@@ -1,0 +1,92 @@
+.button {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #383838;
+  border-radius: 2rem;
+  padding: 1.3rem 4.5rem 1.3rem 5.2rem;
+  overflow: hidden;
+  z-index: 0;
+
+  @media ($mobile) {
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    padding: 1.8rem;
+  }
+
+  &.effect {
+
+    &::after {
+      position: absolute;
+      content: "";
+      filter: blur(5rem);
+      -webkit-backdrop-filter: blur(5rem);
+      @include mars-gradient;
+      --width: 0;
+      --height: 0;
+      width: var(--width);
+      height: var(--height);
+      top: var(--y);
+      left: var(--x);
+      transform: translate(-50%, -50%);
+      transition: width 300ms ease, height 300ms ease;
+      z-index: -1;
+
+      @media ($mobile) {
+        top: -50%;
+        left: auto;
+        right: -50%;
+        --width: 15.5rem;
+        --height: 15rem;
+        filter: blur(2.5rem);
+      }
+    }
+
+    @include hover {
+      &:disabled::after {
+        --width: 0;
+        --height: 0;
+      }
+
+      &:hover::after {
+        --width: 32.5rem;
+        --height: 20rem;
+      }
+    }
+  }
+
+  &.small {
+    font-size: 1.4rem;
+    padding: 0.8rem 2.1rem 0.8rem 2.8rem;
+    border-radius: 1rem;
+
+    @include hover {
+
+      &:hover::after {
+        filter: blur(2.5rem);
+        --width: 10.3rem;
+        --height: 10.8rem;
+      }
+    }
+
+    @media ($mobile) {
+      font-size: .8rem;
+      padding: 0.8rem 1rem 0.8rem 1.4rem;
+      border-radius: 0.6rem;
+
+      &::after {
+        top: -50%;
+        left: auto;
+        right: -50%;
+        --width: 10.5rem;
+        --height: 10rem;
+        filter: blur(2.5rem);
+      }
+    }
+  }
+}

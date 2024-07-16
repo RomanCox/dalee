@@ -1,0 +1,209 @@
+.sectionWrapper {
+  padding: 22.3rem 0 18.6rem;
+  position: relative;
+
+  @media ($mobile) {
+    min-height: 100dvh;
+    padding: 0 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo_mobile {
+    width: 19.1rem;
+    height: auto;
+    margin: 9.1rem auto 0;
+  }
+
+  .container {
+    max-width: 105rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    @media ($mobile) {
+      margin-top: 100px;
+      align-self: center;
+    }
+
+    @media (max-width: 450px) {
+      margin-top: 16rem;
+    }
+
+    .title {
+      margin-bottom: 3.7rem;
+      font-size: 20rem;
+      line-height: 14.4rem;
+
+      @media ($mobile) {
+        margin-bottom: 4.4rem;
+        font-size: 6.4rem;
+        line-height: normal;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+        }
+      }
+    }
+
+    .location {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+
+      @media ($mobile) {
+        font-size: 1.6rem;
+        line-height: 1.1;
+        margin-bottom: 1.8rem;
+        color: rgba($text-color, 0.6);
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .description {
+      font-size: 2.4rem;
+      max-width: 68rem;
+      margin: 0 auto;
+
+      @media ($mobile) {
+        font-size: 2rem;
+        max-width: 26rem;
+        margin-bottom: 4rem;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .arrow {
+      display: none;
+
+      @media ($mobile) {
+        margin: 0 auto;
+        position: relative;
+        opacity: 0;
+        display: flex;
+        color: $text-color;
+        width: 2.4rem;
+        height: 2.4rem;
+        animation: bounce 2s infinite ease-in-out;
+
+        &::after {
+          width: 2.4rem;
+          height: 2.4rem;
+          filter: blur(5px);
+          top: 0;
+        }
+
+        &:active {
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      &::after {
+        content: "";
+        opacity: 0;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+        width: 9.3rem;
+        height: 9.3rem;
+        border-radius: 100%;
+        filter: blur(20px);
+        background: linear-gradient(
+                        129deg,
+                        #4d0a05 0%,
+                        #780a00 13.5%,
+                        #af0b00 27.5%,
+                        #bc0d00 42.5%,
+                        #dd2e00 58.5%,
+                        #e23900 69%,
+                        #e87f36 84.51%,
+                        #dca46e 99.74%
+        );
+        transition: opacity 0.3s ease;
+      }
+
+      @include hover {
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .backgroundContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+
+    @media ($mobile) {
+      display: none;
+    }
+
+    img {
+      height: auto !important;
+      object-fit: cover;
+    }
+  }
+
+  .background_mobile {
+    z-index: -1;
+    object-fit: cover;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
