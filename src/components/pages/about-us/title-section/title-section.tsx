@@ -1,7 +1,11 @@
-import {memo, useLayoutEffect, useRef, useState} from "react";
+"use client"
+
+import {memo, useLayoutEffect, useMemo, useRef, useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {motion, useScroll, useTransform} from "framer-motion";
+import {useGSAP} from "@gsap/react";
+import gsap from "gsap";
 import {useLenis} from "lenis/react";
 import clsx from "clsx";
 
@@ -16,17 +20,18 @@ import mobileBackground from "/public/images/projects/projects-page-mobile-bg.pn
 
 import {TAboutCard} from "@/types/about-card.type";
 import {IAboutUsData} from "@/constants/about-us";
+import {TCardVariant} from "@/types/global";
 
 import styles from "./title-section.module.scss";
-
+import {useWindowWidth} from "@react-hook/window-size";
 
 interface TitleSectionProps {
     aboutUsData: IAboutUsData;
     isMobile?: boolean;
-    aboutCards?: TAboutCard[];
+    aboutUsCards?: TAboutCard[];
 }
 
-export const TitleSection = memo(({isMobile, aboutCards, aboutUsData}: TitleSectionProps) => {
+export const TitleSection = memo(({isMobile, aboutUsCards, aboutUsData}: TitleSectionProps) => {
     const [isAppleOS, setIsAppleOS] = useState<boolean>(true);
 
     useLayoutEffect(() => {
@@ -34,7 +39,12 @@ export const TitleSection = memo(({isMobile, aboutCards, aboutUsData}: TitleSect
         setIsAppleOS(value);
     }, []);
 
-    const aboutCardsFiltered = aboutCards?.filter(card => card.type !== "title");
+    const aboutCardsFiltered = aboutUsCards?.map(card => card.type === "title" ? {
+        id: card.id,
+        title: "",
+        description: "",
+        type: "empty" as TCardVariant
+    } : card);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
@@ -49,13 +59,53 @@ export const TitleSection = memo(({isMobile, aboutCards, aboutUsData}: TitleSect
         }
     };
 
+    const tl = gsap.timeline();
+
+    useGSAP(
+        () => {
+            tl.to(location.current, {
+                y: "0%",
+                duration: 1,
+            })
+                .to(
+                    title.current,
+                    {
+                        y: "0%",
+                        stagger: 0.05,
+                        duration: 1,
+                    },
+                    0,
+                )
+                .to(
+                    description.current,
+                    {
+                        y: "0%",
+                        stagger: 0.05,
+                        duration: 1,
+                    },
+                    0,
+                )
+            // .to(arrow.current, {
+            //     opacity: 1,
+            // });
+        },
+        {
+            scope: containerRef,
+        },
+    );
+
+    const width = useWindowWidth();
+
+    const coefficient = useMemo(() => width / 1920 * 10, [width]);
+
     const {scrollY} = useScroll();
-    const y = useTransform(scrollY, [0, 1000], [0, 70]);
+    const yCardsContainer = useTransform(scrollY, [0, 1000], [coefficient * 21, -coefficient * 21]);
+    const yBackground = useTransform(scrollY, [0, 1000], [0, 70]);
 
     const lenis = useLenis();
 
     if (isMobile) {
-        const titleCard = aboutCards?.filter(card => card.type === "title")[0];
+        const titleCard = aboutUsCards?.filter(card => card.type === "title")[0];
 
         return (
             <section ref={containerRef} className={styles.sectionWrapper}>
@@ -95,7 +145,6 @@ export const TitleSection = memo(({isMobile, aboutCards, aboutUsData}: TitleSect
         <section ref={containerRef} className={styles.sectionWrapper}>
             <div className={styles.titleContainer}>
                 <p className={styles.location}>
-                    {/*Россия, Краснодар.*/}
                     <span className={styles.mask}>
                     <span ref={location} className={styles.text}>
                         {aboutUsData.location}
@@ -119,32 +168,22 @@ export const TitleSection = memo(({isMobile, aboutCards, aboutUsData}: TitleSect
                     ))}
                 </p>
             </div>
-            <div className={styles.cardsContainer}>
+
+            <motion.div className={styles.cardsContainer} style={{y: yCardsContainer}}>
                 {aboutCardsFiltered?.map((item, index) => (
                     <AboutCard item={item} key={index}/>
                 ))}
-            </div>
+            </motion.div>
 
-            {isMobile ? (
+            <motion.div ref={backgroundRef} className={styles.backgroundContainer} style={{y: yBackground}}>
                 <Image
-                    className={styles.background_mobile}
-                    // src={generateImageUrl(homeData.heroBlock.backgroundMobile.data.attributes.url)}
-                    src={mobileBackground}
+                    // src={generateImageUrl(homeData.heroBg.data.attributes.url)}
+                    src={background}
                     quality={100}
-                    alt="hero mobile background image"
+                    alt="background image"
                     fill
                 />
-            ) : (
-                <motion.div ref={backgroundRef} className={styles.backgroundContainer} style={{y}}>
-                    <Image
-                        // src={generateImageUrl(homeData.heroBg.data.attributes.url)}
-                        src={background}
-                        quality={100}
-                        alt="background image"
-                        fill
-                    />
-                </motion.div>
-            )}
+            </motion.div>
         </section>
     )
 });

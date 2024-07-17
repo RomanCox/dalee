@@ -1,6 +1,7 @@
 import {RequestSectionService} from "@/services/request";
 import {AboutUs} from "@/components/pages/about-us/about-us";
 import {AboutCardsService} from "@/services/about-cards";
+import {aboutUsPageData} from "@/constants/about-us";
 
 const AboutUsPage = async () => {
     const [
@@ -11,7 +12,7 @@ const AboutUsPage = async () => {
         AboutCardsService.getAll(),
     ]);
 
-    const aboutPageCardsSort = (arr: any[]) => {
+    const aboutUsPageCardsSort = (arr: any[]) => {
         if (arr.length <= 4) {
             return arr.sort((a, b) => a.id - b.id);
         } else {
@@ -22,7 +23,7 @@ const AboutUsPage = async () => {
         }
     }
 
-    const aboutCards = aboutPageCardsSort(aboutCardsResponse.data)
+    const aboutUsCards = aboutUsPageCardsSort(aboutCardsResponse.data)
         .map((card, index) => ({
             id: index + 1,
             title: card.attributes.title,
@@ -34,7 +35,8 @@ const AboutUsPage = async () => {
         <main>
             <AboutUs
                 requestSection={requestSectionResponse.data.attributes}
-                aboutCards={aboutCards}
+                aboutUsCards={aboutUsCards}
+                aboutUsData={aboutUsPageData}
             />
         </main>
     );

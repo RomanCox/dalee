@@ -19,15 +19,15 @@ import {IAboutUsData} from "@/constants/about-us";
 
 interface AboutUsDesktopProps {
     requestSection?: TRequestSection;
-    aboutCards?: TAboutCard[];
+    aboutUsCards?: TAboutCard[];
     aboutUsData: IAboutUsData;
 }
 
-export const AboutUsDesktop = memo(({requestSection, aboutCards, aboutUsData}: AboutUsDesktopProps) => {
+export const AboutUsDesktop = memo(({requestSection, aboutUsCards, aboutUsData}: AboutUsDesktopProps) => {
 
     return (
         <>
-            <TitleSection aboutCards={aboutCards} aboutUsData={aboutUsData}/>
+            <TitleSection aboutUsCards={aboutUsCards} aboutUsData={aboutUsData}/>
             <QuoteSection quoteSectionData={quoteSectionData}/>
             <EmployeesSection />
             <RequestSection requestSection={requestSection}/>

@@ -1,5 +1,5 @@
 .sectionWrapper {
-  padding: 22.3rem 3.7rem 0;
+  padding: 29.3rem 3.7rem 0;
   margin-bottom: 27.5rem;
   display: flex;
   flex-direction: column;
@@ -25,9 +25,12 @@
   }
 
   .titleContainer {
-    width: 100%;
+    width: calc(100% - 82rem);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 22.3rem;
 
     @media ($mobile) {
       margin-top: 15.8rem;
@@ -35,6 +38,7 @@
 
     .location {
       font-size: 2rem;
+      margin-bottom: 2rem;
 
       @media ($mobile) {
         font-size: 1.6rem;
@@ -57,45 +61,72 @@
     }
 
     .title {
+      margin-bottom: 1rem;
+
+      @media ($mobile) {
+        margin-bottom: 4.4rem;
+      }
 
       .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
 
-        .text {}
+        .text {
+          transform: translateY(100%);
+        }
       }
     }
 
     .description {
+      font-size: 2.4rem;
+      max-width: 68rem;
+      text-align: center;
+
+      @media ($mobile) {
+        font-size: 2rem;
+        max-width: 26rem;
+      }
 
       .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
 
-        .text {}
-      }
-    }
-  }
+        .text {
+          transform: translateY(100%);
 
-  .location {
-    font-size: 2rem;
-
-    @media ($mobile) {
-      margin-top: 15.8rem;
-      font-size: 1.6rem;
-      color: rgba($text-color, 0.6);
-    }
-
-    .mask {
-      display: inline-flex;
-      overflow: hidden;
-      position: relative;
-
-      .text {
-        transform: translateY(100%);
-
-        @media ($mobile) {
-          line-height: 1.1;
+          @media ($mobile) {
+            line-height: 1.1;
+          }
         }
       }
     }
   }
+
+  //.location {
+  //  font-size: 2rem;
+  //
+  //  @media ($mobile) {
+  //    margin-top: 15.8rem;
+  //    font-size: 1.6rem;
+  //    color: rgba($text-color, 0.6);
+  //  }
+  //
+  //  .mask {
+  //    display: inline-flex;
+  //    overflow: hidden;
+  //    position: relative;
+  //
+  //    .text {
+  //      transform: translateY(100%);
+  //
+  //      @media ($mobile) {
+  //        line-height: 1.1;
+  //      }
+  //    }
+  //  }
+  //}
 
   .titleMobile {
     font-size: 6.4rem;

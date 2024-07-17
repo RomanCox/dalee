@@ -6,17 +6,18 @@ import {useWindowWidth} from "@react-hook/window-size";
 import {TRequestSection} from "@/types/request.type";
 import {TAboutCard} from "@/types/about-card.type";
 import {AboutUsMobile} from "@/components/pages/about-us/about-us-mobile";
-import {AboutUsDesktop, IAboutUsData} from "@/components/pages/about-us/about-us-desktop";
+import {AboutUsDesktop} from "@/components/pages/about-us/about-us-desktop";
+import {IAboutUsData} from "@/constants/about-us";
 
 
 
 interface AboutUsProps {
     requestSection?: TRequestSection;
-    aboutCards?: TAboutCard[];
-    aboutData: IAboutUsData;
+    aboutUsCards?: TAboutCard[];
+    aboutUsData: IAboutUsData;
 }
 
-export const AboutUs = memo(({requestSection, aboutCards}: AboutUsProps) => {
+export const AboutUs = memo(({requestSection, aboutUsCards, aboutUsData}: AboutUsProps) => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const width = useWindowWidth();
 
@@ -31,9 +32,9 @@ export const AboutUs = memo(({requestSection, aboutCards}: AboutUsProps) => {
     return (
         <>
             {isMobile ? (
-                <AboutUsMobile requestSection={requestSection} aboutCards={aboutCards}/>
+                <AboutUsMobile aboutCards={aboutUsCards} aboutUsData={aboutUsData}/>
             ) : (
-                <AboutUsDesktop requestSection={requestSection} aboutCards={aboutCards} />
+                <AboutUsDesktop requestSection={requestSection} aboutUsCards={aboutUsCards} aboutUsData={aboutUsData}/>
             )}
         </>
     )

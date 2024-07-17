@@ -20,7 +20,7 @@ export const AboutCard = memo(({item}: { item: TAboutCard }) => {
         <Card
             variant={item.type}
             className={clsx(styles.card, styles[item.type], cardMods)}
-            withoutHoverEffect={item.type === "title"}
+            withoutHoverEffect={item.type === "title" || item.type === "empty"}
         >
             <h4
                 className={clsx(styles.title, {

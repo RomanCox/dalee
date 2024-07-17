@@ -1,15 +1,11 @@
+import {TCardVariant} from "@/types/global";
+
 export interface IAboutItem {
     id: number;
     title: string;
     description?: string;
     descriptionMobile?: string;
-    type: "title" | "card-solid";
-}
-
-export interface IAboutUsData {
-    location: string;
-    title: string;
-    description: string[];
+    type: Partial<TCardVariant>;
 }
 
 export const aboutUsData: IAboutItem[] = [
@@ -98,3 +94,30 @@ export const aboutUsMobileData: IAboutItem[] = [
         type: "card-solid",
     },
 ];
+
+export interface IAboutUsData {
+    location: string;
+    title: string;
+    description: string[];
+    mobileDescription?: string[];
+}
+
+export const aboutUsPageData: IAboutUsData = {
+    location: "Россия, Краснодар.",
+    title: "о нас",
+    description: [
+        "Реализуем самые смелые задачи благодаря",
+        "большой команде компетентных специалистов и",
+        "создаем масштабные проекты жилых комплексов",
+        "комфорт и бизнес класса.",
+    ],
+    mobileDescription: [
+        "Мы всегда стремимся вперед",
+        "к покорению новых вершин,",
+        "достижению масштабных",
+        "результатов — рост компании,",
+        "компетенций, коллектива,",
+        "бизнеса и финансового",
+        "благополучия компании.",
+    ],
+}
