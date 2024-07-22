@@ -63,7 +63,8 @@
       }
 
       @media (max-width: 860px) {
-        width: 85vw;
+        //width: 85vw;
+        width: calc(100vw - 5.2rem);
       }
 
       div {
@@ -198,7 +199,8 @@
           overflow: hidden;
 
           @media screen and (max-width: 860px) {
-            width: 85vw;
+            //width: 85vw;
+            width: calc(100vw - 5.2rem);
           }
 
           .image {
@@ -313,7 +315,8 @@
 
           @media screen and (max-width: 860px) {
             min-width: 0;
-            width: 85vw;
+            //width: 85vw;
+            width: calc(100vw - 5.2rem);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
           }
 

@@ -1,18 +1,17 @@
 .sectionWrapper {
   margin-bottom: 30rem;
-  padding-inline: 3.7rem;
   display: flex;
   flex-direction: column;
   gap: 7.6rem;
 
   @media ($mobile) {
-    padding-inline: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
     gap: 2.4rem;
   }
 
   .teamSwiper {
-    width: 100%;
+    width: calc(100% - 7.4rem);
+    margin-inline: 3.7rem;
     position: relative;
 
     .swiperLeftBtn,
@@ -53,18 +52,48 @@
   }
 
   .employeesCardContainer {
+    padding-inline: 3.7rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem;
     row-gap: 7.6rem;
   }
 
   .otherEmployeeSliderContainer {
+    height: 15rem;
+    position: relative;
+
+    @media ($mobile) {
+      height: 7.5rem;
+    }
+
+    .gradient {
+      height: 100%;
+      width: 10rem;
+      position: absolute;
+      top: 0;
+      z-index: 2;
+
+      @media ($mobile) {
+        width: 5rem;
+      }
+
+      &.left {
+        left: 0;
+        background: linear-gradient(90deg, rgba(18,18,18,1) 0%, rgba(18,18,18,1) 5%, rgba(18,18,18,0) 100%);
+      }
+
+      &.right {
+        right: 0;
+        background: linear-gradient(90deg, rgba(18,18,18,0) 0%, rgba(18,18,18,1) 95%, rgba(18,18,18,1) 100%);
+      }
+    }
 
     .otherEmployeeSlide {
       img {
         width: 100%;
         height: 100%;
+        aspect-ratio: 1 / 1;
         border-radius: 50%;
       }
     }

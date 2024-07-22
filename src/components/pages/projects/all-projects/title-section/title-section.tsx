@@ -100,8 +100,12 @@ export const TitleSection = memo(({isMobile, data = titleSectionData}: TitleSect
 
     return (
         <section ref={container} className={styles.sectionWrapper}>
-            {isMobile && (<LogoIcon className={styles.logo_mobile}/>)}
-            <div className={styles.container}>
+            {isMobile && (
+                <Link href={"/"} className={styles.logo_mobile}>
+                    <LogoIcon/>
+                </Link>
+            )}
+            <div className={styles.titleContainer}>
                 <p className={clsx(styles.location, {[styles.macOsLocation]: isAppleOS})}>
                     <span className={styles.mask}>
                         <span ref={location} className={styles.text}>

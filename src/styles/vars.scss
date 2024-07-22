@@ -28,6 +28,7 @@ $blue-200: #0077ff;
 
 $bg-color: $black;
 $text-color: $white-200;
+$text-dark-color: $grey-darkest;
 $accent-color: $orange-100;
 $text-color-secondary: $grey-lightest;
 $danger-color: $red-100;
@@ -37,6 +38,7 @@ $header-h: 10.3rem;
 
 $mobile-buttons-z-index: 19;
 $modal-z-index: 20;
+$toast-z-index: 21;
 
 $mobile: "max-width: 767px";
 

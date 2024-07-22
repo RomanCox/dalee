@@ -15,6 +15,7 @@ export const CardsSlider = memo(({aboutCards}: CardsSliderProps) => {
 
     return (
         <Swiper
+            id={"cards"}
             slidesPerView={"auto"}
             initialSlide={2}
             spaceBetween={10}

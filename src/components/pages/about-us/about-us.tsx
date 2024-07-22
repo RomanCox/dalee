@@ -1,15 +1,13 @@
 "use client";
 
-import {memo, useEffect, useState} from "react";
-import {useWindowWidth} from "@react-hook/window-size";
+import {memo} from "react";
 
 import {TRequestSection} from "@/types/request.type";
 import {TAboutCard} from "@/types/about-card.type";
 import {AboutUsMobile} from "@/components/pages/about-us/about-us-mobile";
 import {AboutUsDesktop} from "@/components/pages/about-us/about-us-desktop";
 import {IAboutUsData} from "@/constants/about-us";
-
-
+import {useMediaQuery} from "@/shared/hooks/use-match-media";
 
 interface AboutUsProps {
     requestSection?: TRequestSection;
@@ -18,16 +16,7 @@ interface AboutUsProps {
 }
 
 export const AboutUs = memo(({requestSection, aboutUsCards, aboutUsData}: AboutUsProps) => {
-    const [isMobile, setIsMobile] = useState<boolean>(false);
-    const width = useWindowWidth();
-
-    useEffect(() => {
-        if (width > 767) {
-            setIsMobile(false);
-        } else {
-            setIsMobile(true);
-        }
-    }, [width]);
+    const isMobile = useMediaQuery("(max-width: 767px)");
 
     return (
         <>

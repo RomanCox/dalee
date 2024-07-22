@@ -1,7 +1,6 @@
 "use client";
 
-import {memo, useRef} from "react";
-import gsap from "gsap";
+import {memo} from "react";
 import clsx from "clsx";
 
 import Card from "@/components/ui/card/card";

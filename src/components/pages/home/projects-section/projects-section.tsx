@@ -30,20 +30,16 @@ interface ProjectsSectionProps {
 const ANIMATION_DURATION = 300;
 
 export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
-    const slidesWithCopiedElements = useMemo(() => {
-        if (slidesData.length <= 7) {
-            return [
+    const slidesWithCopiedElements = useMemo(() =>
+        slidesData.length <= 7 ?
+            [
                 slidesData[slidesData.length - 1],
                 ...slidesData,
                 slidesData[0],
-            ];
-        } else {
-            return [
+            ] : [
                 slidesData[slidesData.length - 1],
                 ...slidesData,
-            ];
-        }
-    }, [slidesData]);
+            ], [slidesData]);
 
     const [width, height] = useWindowSize();
 

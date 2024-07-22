@@ -1,6 +1,6 @@
 "use client";
 
-import {memo, useCallback, useLayoutEffect, useMemo, useRef, useState} from "react";
+import {memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
@@ -18,6 +18,11 @@ import {TRequestSection} from "@/types/request.type";
 
 import styles from "./project-description-desktop.module.scss";
 import {ImageContainer} from "./image-container";
+import {useHeaderContext} from "@/app/context/header-context";
+import {useImageBrightness} from "@/shared/hooks/use-image-brightness";
+import {useCoefficient} from "@/shared/hooks/use-coefficient";
+import {vars} from "@/styles/vars";
+import {useWindowWidth} from "@react-hook/window-size";
 
 
 interface ProjectDescriptionProps {
@@ -27,6 +32,57 @@ interface ProjectDescriptionProps {
 
 export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: ProjectDescriptionProps) => {
     const [chapter, setChapter] = useState<SlideType>(projectData.otherSlides[0].title);
+
+    const coefficient = useCoefficient();
+
+    const width = useWindowWidth();
+
+    const { setLogoColor, setPhoneColor, setNavColor } = useHeaderContext();
+    const { brightness: brightnessLogo, canvasRef: canvasRefLogo } = useImageBrightness(projectData.mainSlide.image, setLogoColor, {
+        sx: 6.4 * coefficient,
+        sy: (10.3 * coefficient - 30) / 2,
+        sw: 22 * coefficient,
+    });
+    const { brightness: brightnessPhone, canvasRef: canvasRefPhone } = useImageBrightness(projectData.mainSlide.image, setLogoColor, {
+        sx: (width - 17.2 * coefficient) / 2,
+        sy: (10.3 * coefficient - 30) / 2,
+        sw: 17.2 * coefficient,
+    });
+    const { brightness: brightnessNav, canvasRef: canvasRefNav } = useImageBrightness(projectData.mainSlide.image, setLogoColor, {
+        sx: width - (6.4 + 27.8) * coefficient,
+        sy: (10.3 * coefficient - 30) / 2,
+        sw: 27.8 * coefficient,
+    });
+    
+    useEffect(() => {
+        if (brightnessLogo) {
+            setLogoColor(brightnessLogo > 128 ? vars.textDarkColor : vars.textColor);
+        }
+    }, [brightnessLogo, setLogoColor]);
+
+    useEffect(() => {
+        if (brightnessPhone) {
+            setPhoneColor(brightnessPhone > 128 ? vars.textDarkColor : vars.textColor);
+        }
+    }, [brightnessPhone, setPhoneColor]);
+
+    useEffect(() => {
+        if (brightnessNav) {
+            setNavColor(brightnessNav > 128 ? vars.textDarkColor : vars.textColor);
+        }
+    }, [brightnessNav, setNavColor]);
+
+    useLenis(({ scroll }) => {
+        if (scroll > 820) {
+            setLogoColor(vars.textColor);
+            setPhoneColor(vars.textColor);
+            setNavColor(vars.textColor);
+        } else if (brightnessLogo && brightnessPhone && brightnessNav) {
+            setLogoColor(brightnessLogo > 128 ? vars.textDarkColor : vars.textColor);
+            setPhoneColor(brightnessPhone > 128 ? vars.textDarkColor : vars.textColor);
+            setNavColor(brightnessNav > 128 ? vars.textDarkColor : vars.textColor);
+        }
+    }, [setLogoColor, brightnessLogo]);
 
     const slides = useMemo(() =>
             projectData.otherSlides.filter(slide => slide.title === chapter),
@@ -122,7 +178,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                         scrub: true,
                     },
                     width: "68vw",
-                    height: "calc(100dvh - 16rem)",
+                    height: "calc(100dvh - 19.7rem)",
                     right: "3.7rem",
                     top: "16rem",
                     borderRadius: "2rem",
@@ -148,6 +204,9 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
             <div className={styles.animationContentContainer}>
                 <div className={styles.stickyBlock}>
                     <div className={styles.imagesWrapper} ref={imageContainerRef}>
+                        <canvas ref={canvasRefLogo} style={{display: 'none'}}/>
+                        <canvas ref={canvasRefPhone} style={{display: 'none'}}/>
+                        <canvas ref={canvasRefNav} style={{display: 'none'}}/>
                         <Image
                             src={projectData.mainSlide.image}
                             alt={"project image"}
@@ -199,7 +258,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                     <div className={styles.backButtonAndTitleBlock} ref={titleBlockRef}>
                         <Link href={"/projects"} className={styles.backButton}>
                             <ButtonCircle as={"div"} className={styles.circle}>
-                                <Icon name="arrow-left-small" width="8" height="8"/>
+                                <Icon name="arrow-down" width="12" height="12"/>
                             </ButtonCircle>
                             Вернуться в проекты
                         </Link>
@@ -253,7 +312,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                             </p>
                             <div className={styles.titleContainer}>
                                 <h3 className={styles.projectLinkTitle}>{item.title}</h3>
-                                <Icon name={"arrow-left-small"} width={"39"} height={"38"}
+                                <Icon name={"arrow-down"} width={"39"} height={"38"}
                                       className={styles.projectLinkIcon}/>
                             </div>
                         </div>

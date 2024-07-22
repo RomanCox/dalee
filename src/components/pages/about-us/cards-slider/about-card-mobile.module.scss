@@ -70,12 +70,13 @@
     }
 
     .title {
-      font-size: 9.6rem;
-      font-family: var(--font-adderley), sans-serif;
       width: fit-content;
       margin: 0;
+      font-family: var(--font-adderley), sans-serif;
+      font-size: 9.4rem;
       line-height: 6rem;
       font-weight: 700;
+      letter-spacing: -4px;
     }
 
     .startWithOne {

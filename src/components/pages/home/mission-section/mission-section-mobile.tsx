@@ -44,9 +44,7 @@ const MissionSectionMobile = ({missionData, openModal}: MissionSectionMobileProp
 
     const widthCoefficient = useMemo(() => width / 375 * 50, [width]);
 
-    const scrollCoefficient = useMemo(() => {
-        return Math.ceil((height) / (2 * totalCharacters));
-    }, [height, totalCharacters]);
+    const scrollCoefficient = useMemo(() => Math.ceil((height) / (2 * totalCharacters)), [height, totalCharacters]);
 
     const containerRef = useRef(null);
     const imageRef1 = useRef(null);

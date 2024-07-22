@@ -50,17 +50,15 @@ export const QuoteSection = memo(({quoteSectionData}: QuoteSectionProps) => {
 
     const widthCoefficient = useMemo(() => (width / 1920) * 400, [width]);
 
-    const scrollCoefficient = useMemo(() => {
-        if (isTablet) {
-            return Math.ceil((height / 2 - widthCoefficient) / totalCharacters);
-        }
-        return Math.ceil((3 * height / 2 - widthCoefficient) / totalCharacters);
-    }, [height, totalCharacters, widthCoefficient, isTablet]);
+    const scrollCoefficient = useMemo(() =>
+            isTablet ?
+                Math.ceil((height / 2 - widthCoefficient) / totalCharacters) :
+                Math.ceil((3 * height / 2 - widthCoefficient) / totalCharacters)
+        , [height, totalCharacters, widthCoefficient, isTablet]);
 
     const containerRef = useRef(null);
     const imageRef1 = useRef(null);
     const imageRef2 = useRef(null);
-
 
 
     // useGSAP(
@@ -159,13 +157,13 @@ export const QuoteSection = memo(({quoteSectionData}: QuoteSectionProps) => {
                                         style={{"--duration": `${imageAnimationDuration}ms`}}
                                     >
                                         <div className={styles.social}>
-                                            <Icon height="36" width="36" name={"telegram"} />
+                                            <Icon height="36" width="36" name={"telegram"}/>
                                         </div>
                                         <div className={styles.social}>
-                                            <Icon height="36" width="36" name={"instagram"} />
+                                            <Icon height="36" width="36" name={"instagram"}/>
                                         </div>
                                         <div className={styles.social}>
-                                            <Icon height="36" width="36" name={"vk"} />
+                                            <Icon height="36" width="36" name={"vk"}/>
                                         </div>
                                     </div>
                                 )}

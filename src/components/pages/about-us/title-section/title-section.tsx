@@ -8,6 +8,7 @@ import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 import {useLenis} from "lenis/react";
 import clsx from "clsx";
+import {useWindowWidth} from "@react-hook/window-size";
 
 import {isApple} from "@/utils/helpers";
 
@@ -23,7 +24,6 @@ import {IAboutUsData} from "@/constants/about-us";
 import {TCardVariant} from "@/types/global";
 
 import styles from "./title-section.module.scss";
-import {useWindowWidth} from "@react-hook/window-size";
 
 interface TitleSectionProps {
     aboutUsData: IAboutUsData;
@@ -85,9 +85,9 @@ export const TitleSection = memo(({isMobile, aboutUsCards, aboutUsData}: TitleSe
                     },
                     0,
                 )
-            // .to(arrow.current, {
-            //     opacity: 1,
-            // });
+                .to(arrowRef.current, {
+                    opacity: 1,
+                });
         },
         {
             scope: containerRef,
@@ -104,31 +104,118 @@ export const TitleSection = memo(({isMobile, aboutUsCards, aboutUsData}: TitleSe
 
     const lenis = useLenis();
 
-    if (isMobile) {
-        const titleCard = aboutUsCards?.filter(card => card.type === "title")[0];
+    // if (isMobile) {
+    //     return (
+    //         <section ref={containerRef} className={styles.sectionWrapper}>
+    //             <Link href={"/"} className={styles.logo_mobile}>
+    //                 <LogoIcon/>
+    //             </Link>
+    //
+    //             <div className={styles.titleContainer}>
+    //                 <p className={styles.location}>
+    //                     <span className={styles.mask}>
+    //                         <span ref={location} className={styles.text}>
+    //                             {aboutUsData.location}
+    //                         </span>
+    //                     </span>
+    //                 </p>
+    //                 <h1 className={styles.title}>
+    //                     <span className={styles.mask}>
+    //                         <span ref={title} className={clsx(styles.text, {[styles.macOsTitle]: isAppleOS})}>
+    //                             {aboutUsData.title}
+    //                         </span>
+    //                     </span>
+    //                 </h1>
+    //                 <p className={styles.description}>{aboutUsData.mobileDescription?.map(item => (
+    //                     <span key={item} className={styles.mask}>
+    //                         <span ref={addToDescription} className={styles.text}>
+    //                             {item}
+    //                         </span>
+    //                     </span>
+    //                 ))}</p>
+    //
+    //                 <Link
+    //                     ref={arrowRef}
+    //                     href={"#cards"}
+    //                     onClick={(e) => {
+    //                         e.preventDefault();
+    //                         lenis?.scrollTo("#cards", {offset: -150, lerp: 0.05});
+    //                     }}
+    //                     className={styles.arrow}
+    //                 >
+    //                     <Icon width="59" height="67" name="arrow-down"/>
+    //                 </Link>
+    //             </div>
+    //
+    //             <Image
+    //                 className={styles.background_mobile}
+    //                 // src={generateImageUrl(homeData.heroBlock.backgroundMobile.data.attributes.url)}
+    //                 src={mobileBackground}
+    //                 quality={100}
+    //                 alt="hero mobile background image"
+    //                 fill
+    //             />
+    //         </section>
+    //     )
+    // }
 
-        return (
-            <section ref={containerRef} className={styles.sectionWrapper}>
-                <LogoIcon className={styles.logo_mobile}/>
-
-                <p className={styles.location}>
-                    Россия, Краснодар.
-                </p>
-                <h1 className={styles.titleMobile}>{titleCard?.title}</h1>
-                <p className={styles.descriptionMobile}>{titleCard?.description}</p>
-
-                <Link
-                    ref={arrowRef}
-                    href={"#cards"}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        lenis?.scrollTo("#cards", {offset: -150, lerp: 0.05});
-                    }}
-                    className={styles.arrow}
-                >
-                    <Icon width="59" height="67" name="arrow-down"/>
+    return (
+        <section ref={containerRef} className={styles.sectionWrapper}>
+            {isMobile && (
+                <Link href={"/"} className={styles.logo_mobile}>
+                    <LogoIcon/>
                 </Link>
+            )}
 
+            <div className={styles.titleContainer}>
+                <p className={styles.location}>
+                    <span className={styles.mask}>
+                        <span ref={location} className={styles.text}>
+                            {aboutUsData.location}
+                        </span>
+                    </span>
+                </p>
+                <h1 className={styles.title}>
+                    <span className={styles.mask}>
+                        <span ref={title} className={clsx(styles.text, {[styles.macOsTitle]: isAppleOS})}>
+                            {aboutUsData.title}
+                        </span>
+                    </span>
+                </h1>
+                <p className={styles.description}>
+                    {aboutUsData.description.map(item => (
+                        <span key={item} className={styles.mask}>
+                            <span ref={addToDescription} className={styles.text}>
+                                {item}
+                            </span>
+                        </span>
+                    ))}
+                </p>
+
+                {isMobile && (
+                    <Link
+                        ref={arrowRef}
+                        href={"#cards"}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            lenis?.scrollTo("#cards", {offset: -150, lerp: 0.05});
+                        }}
+                        className={styles.arrow}
+                    >
+                        <Icon width="59" height="67" name="arrow-down"/>
+                    </Link>
+                )}
+            </div>
+
+            {!isMobile && (
+                <motion.div className={styles.cardsContainer} style={{y: yCardsContainer}}>
+                    {aboutCardsFiltered?.map((item, index) => (
+                        <AboutCard item={item} key={index}/>
+                    ))}
+                </motion.div>
+            )}
+
+            {isMobile ? (
                 <Image
                     className={styles.background_mobile}
                     // src={generateImageUrl(homeData.heroBlock.backgroundMobile.data.attributes.url)}
@@ -137,53 +224,17 @@ export const TitleSection = memo(({isMobile, aboutUsCards, aboutUsData}: TitleSe
                     alt="hero mobile background image"
                     fill
                 />
-            </section>
-        )
-    }
-
-    return (
-        <section ref={containerRef} className={styles.sectionWrapper}>
-            <div className={styles.titleContainer}>
-                <p className={styles.location}>
-                    <span className={styles.mask}>
-                    <span ref={location} className={styles.text}>
-                        {aboutUsData.location}
-                    </span>
-                </span>
-                </p>
-                <h1 className={styles.title}>
-                <span className={styles.mask}>
-                    <span ref={title} className={clsx(styles.text, {[styles.macOsTitle]: isAppleOS})}>
-                        {aboutUsData.title}
-                    </span>
-                </span>
-                </h1>
-                <p className={styles.description}>
-                    {aboutUsData.description.map(item => (
-                        <span key={item} className={styles.mask}>
-                        <span ref={addToDescription} className={styles.text}>
-                            {item}
-                        </span>
-                    </span>
-                    ))}
-                </p>
-            </div>
-
-            <motion.div className={styles.cardsContainer} style={{y: yCardsContainer}}>
-                {aboutCardsFiltered?.map((item, index) => (
-                    <AboutCard item={item} key={index}/>
-                ))}
-            </motion.div>
-
-            <motion.div ref={backgroundRef} className={styles.backgroundContainer} style={{y: yBackground}}>
-                <Image
-                    // src={generateImageUrl(homeData.heroBg.data.attributes.url)}
-                    src={background}
-                    quality={100}
-                    alt="background image"
-                    fill
-                />
-            </motion.div>
+            ) : (
+                <motion.div ref={backgroundRef} className={styles.backgroundContainer} style={{y: yBackground}}>
+                    <Image
+                        // src={generateImageUrl(homeData.heroBg.data.attributes.url)}
+                        src={background}
+                        quality={100}
+                        alt="background image"
+                        fill
+                    />
+                </motion.div>
+            )}
         </section>
     )
 });

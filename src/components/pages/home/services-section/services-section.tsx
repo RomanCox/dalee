@@ -31,13 +31,11 @@ export const ServicesSection = memo(({servicesCards}: ServicesSectionProps) => {
 
     const addToRefsCard = useCallback((el: HTMLDivElement) => {
         if (el) {
-            // el.style.height = `calc(100vh - ${topOffset})`;
             el.style.height = "21.6rem";
         }
         if (el && !cards.current.includes(el)) {
             cards.current.push(el);
         }
-        // }, [topOffset]);
     }, []);
 
     const {scrollYProgress: scrollYProgress1} = useScroll({

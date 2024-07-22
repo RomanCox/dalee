@@ -69,9 +69,9 @@ export const MissionSection = memo(({ missionData }: MissionSectionProps) => {
 
   const widthCoefficient = useMemo(() => (width / 1920) * 400, [width]);
 
-  const scrollCoefficient = useMemo(() => {
-    return Math.ceil((height - widthCoefficient) / totalCharacters);
-  }, [height, totalCharacters, widthCoefficient]);
+  const scrollCoefficient = useMemo(() =>
+      Math.ceil((height - widthCoefficient) / totalCharacters),
+      [height, totalCharacters, widthCoefficient]);
 
   const containerRef = useRef(null);
   const imageRef1 = useRef(null);

@@ -116,7 +116,7 @@ export const ProjectDescriptionMobile = memo(({projectData}: ProjectDescriptionP
                         <p className={styles.position}>{item.position === "left" ? "предыдущий проект" : "следующий проект"}</p>
                         <div className={styles.titleContainer}>
                             <h3 className={styles.projectLinkTitle}>{item.title}</h3>
-                            <Icon name={"arrow-left-small"} width={"39"} height={"38"}
+                            <Icon name={"arrow-down"} width={"39"} height={"38"}
                                   className={styles.projectLinkIcon}/>
                         </div>
                     </Link>

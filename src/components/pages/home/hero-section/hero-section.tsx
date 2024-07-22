@@ -112,7 +112,7 @@ const HeroSection = ({commonData, homeData}: HeroSectionProps) => {
         <section ref={container} className={styles.section}>
             <LogoIcon className={styles.logo_mobile}/>
 
-            <div className={styles.container}>
+            <div className={styles.titleContainer}>
                 <p className={clsx(styles.location, {[styles.macOsLocation]: isAppleOS})}>
                     <span className={styles.mask}>
                         <span ref={location} className={styles.text}>

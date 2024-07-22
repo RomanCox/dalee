@@ -1,7 +1,7 @@
 "use client";
 
-import {memo, useEffect, useState} from "react";
-import {useWindowWidth} from "@react-hook/window-size";
+import {memo} from "react";
+import {useMediaQuery} from "@/shared/hooks/use-match-media";
 
 import {TitleSection} from "@/components/pages/projects/all-projects/title-section/title-section";
 import {ProjectsSection} from "@/components/pages/projects/all-projects/projects-section/projects-section";
@@ -14,21 +14,23 @@ interface AllProjectsProps {
 }
 
 export const AllProjects = memo(({requestSection}: AllProjectsProps) => {
-    const [isMobile, setIsMobile] = useState<boolean>(false);
-    const width = useWindowWidth();
+    // const [isMobile, setIsMobile] = useState<boolean>(false);
+    // const width = useWindowWidth();
+    //
+    // useEffect(() => {
+    //     if (width > 767) {
+    //         setIsMobile(false);
+    //     } else {
+    //         setIsMobile(true);
+    //     }
+    // }, [width]);
 
-    useEffect(() => {
-        if (width > 767) {
-            setIsMobile(false);
-        } else {
-            setIsMobile(true);
-        }
-    }, [width]);
+    const isMobile = useMediaQuery("(max-width: 767px)");
 
     return (
         <>
             <TitleSection isMobile={isMobile}/>
-            <ProjectsSection/>
+            <ProjectsSection isMobile={isMobile}/>
             {!isMobile && <RequestSection requestSection={requestSection}/>}
         </>
     )

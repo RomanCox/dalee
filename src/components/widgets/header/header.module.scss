@@ -24,6 +24,12 @@
   .logo,
   .links_container {
     flex: 1;
+    //color: $text-color;
+  }
+
+  .links_container {
+    display: flex;
+    justify-content: flex-end;
   }
 
   .logo {
@@ -31,7 +37,7 @@
     width: fit-content;
 
     a {
-      width: 21.9rem;
+      width: 22rem;
       height: auto;
       display: block;
 

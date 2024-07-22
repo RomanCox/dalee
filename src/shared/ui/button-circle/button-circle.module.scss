@@ -6,17 +6,17 @@
   transition: all 0.25s;
   z-index: 0;
 
-  &:hover {
-    .content {
-      border-color: rgb(26, 117, 226);
-      background: rgb(26, 117, 226);
-      transition: all 0.25s;
-
-      &:before {
-        transition: all 0.25s;
-      }
-    }
-  }
+  //&:hover {
+  //  .content {
+  //    border-color: rgb(26, 117, 226);
+  //    background: rgb(26, 117, 226);
+  //    transition: all 0.25s;
+  //
+  //    &:before {
+  //      transition: all 0.25s;
+  //    }
+  //  }
+  //}
 
   .content {
     width: 2rem;
@@ -48,20 +48,19 @@
   }
 }
 
-.origin {
-
-
-  &:hover {
-    .content {
-      border-color: rgb(198, 214, 229);
-
-      &:before {
-        background: rgb(245, 248, 251);
-      }
-    }
-  }
-
-  .content {
-    background: rgb(255, 255, 255);
-  }
-}
+//.origin {
+//
+//  &:hover {
+//    .content {
+//      border-color: rgb(198, 214, 229);
+//
+//      &:before {
+//        background: rgb(245, 248, 251);
+//      }
+//    }
+//  }
+//
+//  .content {
+//    background: rgb(255, 255, 255);
+//  }
+//}

@@ -1,8 +1,10 @@
 "use client";
 
 import {memo, useState} from "react";
-import Image, {StaticImageData} from "next/image";
+import {StaticImageData} from "next/image";
 import clsx from "clsx";
+
+import {ProjectCard} from "@/components/pages/projects/all-projects/projects-section/project-card";
 
 import offices from "/public/images/projects/projectsPage/offices.png";
 import elizePark from "/public/images/projects/projectsPage/elize-park.png";
@@ -15,7 +17,6 @@ import dune from "/public/images/projects/projectsPage/dune.png";
 import svetlograd from "/public/images/projects/projectsPage/svetlograd.png";
 
 import styles from "./projects-section.module.scss";
-import Link from "next/link";
 
 enum FilterType {
     ALL = "все проекты",
@@ -29,7 +30,7 @@ enum StatusType {
     IMPLEMENTED = "реализован",
 }
 
-interface IProject {
+export interface IProject {
     id: number;
     image: StaticImageData;
     title: string;
@@ -39,6 +40,7 @@ interface IProject {
 
 interface ProjectsSectionProps {
     projects?: IProject[];
+    isMobile?: boolean;
 }
 
 const defaultProjects: IProject[] = [
@@ -107,7 +109,7 @@ const defaultProjects: IProject[] = [
     },
 ]
 
-export const ProjectsSection = memo(({projects = defaultProjects}: ProjectsSectionProps) => {
+export const ProjectsSection = memo(({projects = defaultProjects, isMobile}: ProjectsSectionProps) => {
     const [activeFilter, setActiveFilter] = useState<FilterType>(FilterType.ALL);
 
     const filters: FilterType[] = Object.values(FilterType);
@@ -127,15 +129,8 @@ export const ProjectsSection = memo(({projects = defaultProjects}: ProjectsSecti
             </div>
 
             <div className={styles.projectsWrapper}>
-                {projects.map((project) => (
-                    <Link key={project.id} className={styles.projectCard} href={"/projects/patriki"}>
-                        <Image src={project.image} alt={project.title}/>
-                        <div className={styles.projectContent}>
-                            <h3 className={styles.projectTitle}>{project.title}</h3>
-                            <p className={styles.projectStatus}>{project.status}</p>
-                            <p className={styles.projectYear}>{project.year}</p>
-                        </div>
-                    </Link>
+                {projects.map((project, index) => (
+                    <ProjectCard key={project.id} project={project} index={index} isMobile={isMobile}/>
                 ))}
 
             </div>

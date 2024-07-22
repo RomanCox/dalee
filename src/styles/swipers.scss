@@ -155,7 +155,7 @@
 
 .other-employee-swiper {
   width: 100%;
-  height: 17.7rem;
+  height: 100%;
 
   .swiper-wrapper {
     transition-timing-function: linear;
@@ -163,10 +163,17 @@
     transition-duration: 0s;
 
     .swiper-slide {
-      width: 17.7rem !important;
-      max-width: 17.7rem;
-      height: 17.7rem;
+      width: 15rem !important;
+      max-width: 15rem;
+      height: 100%;
+      aspect-ratio: 1 / 1;
       border-radius: 50%;
+
+      @media ($mobile) {
+        width: 7.5rem !important;
+        max-width: 7.5rem;
+        //height: 7.5rem;
+      }
     }
   }
 }
@@ -177,11 +184,9 @@
 
   .swiper-wrapper {
     height: fit-content;
-    //padding-inline: 3.3rem;
 
     .swiper-slide {
       width: calc(100vw - 6.6rem) !important;
-      height: 50rem;
     }
   }
 }

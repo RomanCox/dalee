@@ -5,41 +5,39 @@
   @media ($mobile) {
     min-height: 100dvh;
     padding: 0 1.6rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    //display: flex;
+    //flex-direction: column;
+    //align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
   }
 
   .logo_mobile {
-    width: 19.1rem;
-    height: auto;
     margin: 9.1rem auto 0;
+
+    svg {
+      width: 19.1rem;
+      height: auto;
+    }
   }
 
-  .container {
+  .titleContainer {
     max-width: 105rem;
     width: 100%;
     margin: 0 auto;
     text-align: center;
 
     @media ($mobile) {
-      margin-top: 100px;
+      margin-top: 0;
       align-self: center;
     }
 
-    @media (max-width: 450px) {
-      margin-top: 16rem;
-    }
-
     .title {
-      margin-bottom: 3.7rem;
-      font-size: 20rem;
-      line-height: 14.4rem;
+      margin-bottom: 1rem;
 
       @media ($mobile) {
         margin-bottom: 4.4rem;
         font-size: 6.4rem;
-        line-height: normal;
       }
 
       .mask {
@@ -193,6 +191,30 @@
   .background_mobile {
     z-index: -1;
     object-fit: cover;
+  }
+}
+
+.macOsTitle {
+  line-height: 23rem;
+
+  @media ($mobile) {
+    line-height: 7rem;
+  }
+}
+
+.macOsLocation {
+  transform: translateY(1rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
+  }
+}
+
+.macOsDescription {
+  transform: translateY(-2rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
   }
 }
 

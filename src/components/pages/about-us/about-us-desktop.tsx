@@ -1,7 +1,6 @@
 "use client";
 
-import {memo, useEffect, useState} from "react";
-import {useWindowWidth} from "@react-hook/window-size";
+import {memo} from "react";
 
 import {RequestSection} from "@/components/widgets/request-section/request-section";
 

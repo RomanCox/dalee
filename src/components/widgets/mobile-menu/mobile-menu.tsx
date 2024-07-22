@@ -13,8 +13,6 @@ import { SocialItems } from "@/components/widgets/social-items/social-items";
 import { Portal } from "@/shared/ui/portal/portal";
 import { Overlay } from "@/shared/ui/overlay/overlay";
 
-import { navItems, socials } from "@/constants/mobile-menu";
-
 import styles from "./mobile-menu.module.scss";
 import { MobileMenuButton } from "@/shared/ui/mobile-menu-button/mobile-menu-button";
 import { TCommon } from "@/types/common.type";
@@ -84,7 +82,7 @@ export const MobileMenu = memo((props: MobileMenuProps) => {
               {commonData?.contacts.phone}
             </Link>
             {commonData?.navigation.map((item) => (
-              <Link key={item.id} href={item.link} className={styles.navItem}>
+              <Link key={item.id} href={item.link} className={styles.navItem} onClick={closeHandler}>
                 {item.title}
               </Link>
             ))}

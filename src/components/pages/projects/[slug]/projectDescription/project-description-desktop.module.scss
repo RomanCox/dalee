@@ -109,7 +109,7 @@
         .descriptionsWrapper {
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
+          gap: 1.2rem;
 
           .descriptionContainer {
             display: flex;
@@ -124,7 +124,7 @@
               color: $white-100;
               font-weight: 500;
               font-size: 2.5rem;
-              line-height: 120%;
+              line-height: 100%;
               user-select: none;
 
               @media ($mobile) {
@@ -142,7 +142,7 @@
                 color: $white-100;
                 font-weight: 500;
                 font-size: 2rem;
-                line-height: 120%;
+                line-height: 100%;
                 user-select: none;
 
                 @media ($mobile) {
@@ -152,10 +152,11 @@
             }
 
             .value {
+              padding-top: 0.5rem;
               color: $white-100;
               font-weight: 500;
               font-size: 2rem;
-              line-height: 120%;
+              line-height: 100%;
               user-select: none;
 
               @media ($mobile) {
@@ -173,7 +174,6 @@
         flex-direction: column;
         gap: 4rem;
         justify-content: flex-start;
-        //position: fixed;
         position: absolute;
         top: 0;
         left: 3.7rem;
@@ -181,12 +181,22 @@
         opacity: 0;
 
         .backButton {
-          display: flex;
+          width: fit-content;
+          display: inline-flex;
+          align-items: center;
           gap: 1rem;
           font-size: 1.6rem;
+          color: $text-color;
+
+          @include link-hover-effect;
 
           .circle {
-            transform: rotate(45deg);
+            transform: rotate(135deg);
+
+            div {
+              width: 2.5rem;
+              height: 2.5rem;
+            }
           }
         }
 
@@ -198,7 +208,7 @@
 
       .filtersBlock {
         width: 42rem;
-        padding-block: 2rem 4.6rem;
+        padding-block: 2rem 4.2rem;
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -312,7 +322,7 @@
           }
 
           .projectLinkIcon {
-            transform: rotate(135deg);
+            transform: rotate(225deg);
             opacity: 0;
             transition: opacity 300ms;
           }
