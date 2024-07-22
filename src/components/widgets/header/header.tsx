@@ -10,24 +10,6 @@ import { useLenis } from "lenis/react";
 import { TCommon } from "@/types/common.type";
 import {useHeaderContext} from "@/app/context/header-context";
 
-const menu = [
-  {
-    id: 1,
-    name: "О нас",
-    href: "/about",
-  },
-  {
-    id: 2,
-    name: "Проекты",
-    href: "/about",
-  },
-  {
-    id: 3,
-    name: "Вакансии",
-    href: "/about",
-  },
-];
-
 const Header = ({ commonData }: { commonData?: TCommon }) => {
   const [scrolled, setScrolled] = useState(false);
 

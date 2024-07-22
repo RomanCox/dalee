@@ -20,12 +20,6 @@ export const useHeaderContext = (): HeaderContextProps => {
     return context;
 };
 
-interface IHeaderColor {
-    logoColor: string;
-    phoneColor: string;
-    navColor: string;
-}
-
 export const HeaderProvider = ({ children }: { children: ReactNode }) => {
     const [logoColor, setLogoColor] = useState<string>(vars.textColor);
     const [phoneColor, setPhoneColor] = useState<string>(vars.textColor);
