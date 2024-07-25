@@ -7,23 +7,23 @@ import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {clsx} from "clsx";
 import {useLenis} from "lenis/react";
+import {useWindowWidth} from "@react-hook/window-size";
+
+import {useHeaderContext} from "@/app/context/header-context";
+import {useImageBrightness} from "@/shared/hooks/use-image-brightness";
+import {useCoefficient} from "@/shared/hooks/use-coefficient";
 
 import {ButtonCircle} from "@/shared/ui/button-circle/button-circle";
 import Icon from "@/components/ui/icon";
 import {RequestSection} from "@/components/widgets/request-section/request-section";
+import {ImageContainer} from "./image-container";
 
 import {IProjectData, IProjectLink, projectLinksData, SlideType} from "@/constants/project";
+import {vars} from "@/styles/vars";
 
 import {TRequestSection} from "@/types/request.type";
 
 import styles from "./project-description-desktop.module.scss";
-import {ImageContainer} from "./image-container";
-import {useHeaderContext} from "@/app/context/header-context";
-import {useImageBrightness} from "@/shared/hooks/use-image-brightness";
-import {useCoefficient} from "@/shared/hooks/use-coefficient";
-import {vars} from "@/styles/vars";
-import {useWindowWidth} from "@react-hook/window-size";
-
 
 interface ProjectDescriptionProps {
     projectData: IProjectData;
@@ -53,7 +53,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
         sy: (10.3 * coefficient - 30) / 2,
         sw: 27.8 * coefficient,
     });
-    
+
     useEffect(() => {
         if (brightnessLogo) {
             setLogoColor(brightnessLogo > 128 ? vars.textDarkColor : vars.textColor);
@@ -73,6 +73,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
     }, [brightnessNav, setNavColor]);
 
     useLenis(({ scroll }) => {
+        console.log(scroll)
         if (scroll > 820) {
             setLogoColor(vars.textColor);
             setPhoneColor(vars.textColor);
@@ -169,7 +170,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
 
             gsap.fromTo(
                 imageContainerRef.current,
-                { width: "100dvw" },
+                { width: "calc(100vw - 17px)" },
                 {
                     scrollTrigger: {
                         trigger: mainSlideRef.current,
@@ -188,7 +189,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
             gsap.to(mainImageRef.current, {
                 scrollTrigger: {
                     trigger: mainSlideRef.current,
-                    start: "top top",
+                    start: "bottom bottom",
                     end: "bottom center",
                     scrub: true,
                 },
@@ -202,6 +203,27 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
             className={styles.sectionWrapper}
         >
             <div className={styles.animationContentContainer}>
+                <div className={styles.slideDescriptionsContainer}>
+                    <div className={styles.slideDescription} ref={mainSlideRef}/>
+
+                    {slides.map((slide, index) => (
+                        <div
+                            key={index}
+                            id={index === 0 ? "firstSlide" : undefined}
+                            className={clsx(
+                                styles.slideDescription,
+                                {
+                                    [styles.textTop]: index > 0,
+                                    [styles.lastSlideDescription]: index === slides.length - 1,
+                                }
+                            )}
+                            ref={setSlideRef(index)}
+                        >
+                            {slide.description}
+                        </div>
+                    ))}
+                </div>
+
                 <div className={styles.stickyBlock}>
                     <div className={styles.imagesWrapper} ref={imageContainerRef}>
                         <canvas ref={canvasRefLogo} style={{display: 'none'}}/>
@@ -218,21 +240,11 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                         {slides.map((slide, index) => (
                             <ImageContainer
                                 key={index}
-                                imageContainerRef={imageContainerRef}
-                                mainSlideRef={mainSlideRef}
-                                slideRefs={slideRefs}
+                                mainSlideRef={mainSlideRef.current}
+                                slideRefs={slideRefs.current}
                                 slide={slide}
                                 index={index}
                             />
-                            /*<div key={index} className={`${styles.imageContainer} box`} ref={setImageRef(index)}>
-                                <Image
-                                    src={slide.image}
-                                    alt={"project image"}
-                                    className={styles.image}
-                                    // ref={setImageRef(index)}
-                                    priority
-                                />
-                            </div>*/
                         ))}
                     </div>
 
@@ -277,27 +289,6 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                         ))}
                     </div>
                 </div>
-
-                <div className={styles.slideDescriptionsContainer}>
-                    <div className={styles.slideDescription} ref={mainSlideRef}/>
-
-                    {slides.map((slide, index) => (
-                        <div
-                            key={index}
-                            id={index === 0 ? "firstSlide" : undefined}
-                            className={clsx(
-                                styles.slideDescription,
-                                {
-                                    [styles.textTop]: index > 0,
-                                    [styles.lastSlideDescription]: index === slides.length - 1,
-                                }
-                            )}
-                            ref={setSlideRef(index)}
-                        >
-                            {slide.description}
-                        </div>
-                    ))}
-                </div>
             </div>
 
             <div className={styles.projectLinksContainer}>
@@ -321,82 +312,6 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
             </div>
 
             <RequestSection requestSection={requestSection}/>
-
-            {/*<div className={styles.slideDescriptionsContainer}>*/}
-            {/*    <div className={styles.slideDescription} ref={mainSlideRef}/>*/}
-
-            {/*    {slides.map((slide, index) => (*/}
-            {/*        <div*/}
-            {/*            key={index}*/}
-            {/*            className={clsx(styles.slideDescription, {[styles.textTop]: index > 0})}*/}
-            {/*            ref={setSlideRef(index)}*/}
-            {/*        >*/}
-            {/*            {slide.description}*/}
-            {/*        </div>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
-
-            {/*<div className={styles.imageContainer} ref={imageContainerRef}>*/}
-            {/*    <Image*/}
-            {/*        src={projectData.mainSlide.image}*/}
-            {/*        alt={"project image"}*/}
-            {/*        className={styles.mainSlide}*/}
-            {/*        ref={mainImageRef}*/}
-            {/*        priority*/}
-            {/*    />*/}
-
-            {/*    {slides.map((slide, index) => (*/}
-            {/*        <Image*/}
-            {/*            key={index}*/}
-            {/*            src={slide.image}*/}
-            {/*            alt={"project image"}*/}
-            {/*            className={styles[`slide${index + 1}`]}*/}
-            {/*            ref={setImageRef(index)}*/}
-            {/*            priority*/}
-            {/*        />*/}
-            {/*    ))}*/}
-            {/*</div>*/}
-
-            {/*<div className={styles.descriptionMainSlide} ref={descriptionMainSlideRef}>*/}
-            {/*    <Image className={styles.title} src={projectData.title} alt={"заголовок"}/>*/}
-            {/*    <div className={styles.divider}/>*/}
-            {/*    <div className={styles.descriptionsWrapper}>*/}
-            {/*        {projectData.mainSlide.description.map(item => (*/}
-            {/*            <div key={item.label} className={styles.descriptionContainer}>*/}
-            {/*                <p className={styles.label}>{item.label}</p>*/}
-            {/*                {Array.isArray(item.value) ? (*/}
-            {/*                    <div className={styles.valuesContainer}>*/}
-            {/*                        {item.value.map(value => (*/}
-            {/*                            <p key={value} className={styles.value}>{value}</p>*/}
-            {/*                        ))}*/}
-            {/*                    </div>*/}
-            {/*                ) : (<p className={styles.value}>{item.value}</p>)}*/}
-            {/*            </div>*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-            {/*<div className={styles.backButtonAndTitleBlock} ref={titleBlockRef}>*/}
-            {/*    <Link href={"/projects"} className={styles.backButton}>*/}
-            {/*        <ButtonCircle as={"div"} className={styles.circle}>*/}
-            {/*            <Icon name="arrow-left-small" width="8" height="8"/>*/}
-            {/*        </ButtonCircle>*/}
-            {/*        Вернуться в проекты*/}
-            {/*    </Link>*/}
-            {/*    <Image className={styles.title} src={projectData.title} alt={"заголовок"}/>*/}
-            {/*</div>*/}
-
-            {/*<div className={styles.filtersBlock} ref={filtersBlockRef}>*/}
-            {/*    {projectData.slideTypes.map(filter => (*/}
-            {/*        <div*/}
-            {/*            key={filter}*/}
-            {/*            className={clsx(styles.filter, {[styles.activeFilter]: chapter === filter})}*/}
-            {/*            onClick={() => onChooseChapter(filter)}*/}
-            {/*        >*/}
-            {/*            {filter}*/}
-            {/*        </div>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
         </section>
     )
 });

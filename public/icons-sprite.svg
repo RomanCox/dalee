@@ -10,10 +10,10 @@
     <symbol id="fat-arrow" viewBox="0 0 39 38">
         <path d="M6.17904 31.7806L34.1157 3.84396M34.1157 3.84396L34.3232 27.6612M34.1157 3.84396L9.96252 3.97244" stroke="#DCDCDC" stroke-width="7.46516" stroke-linecap="square"/>
     </symbol>
-    <symbol id="arrow-left-small" viewBox="0 0 19 17">
-        <path d="M17.0913 8.49979L2.90686 8.49979M1.90686 8.49979L8.32317 1.9707M1.90686 8.49979L8.50578 15.0289"
-              stroke="#DCDCDC" stroke-width="2" stroke-linecap="square"/>
-    </symbol>
+<!--    <symbol id="arrow-left-small" viewBox="0 0 19 17">-->
+<!--        <path fill-rule="evenodd" d="M17.0913 8.49979L2.90686 8.49979M1.90686 8.49979L8.32317 1.9707M1.90686 8.49979L8.50578 15.0289"-->
+<!--              stroke="currentColor" stroke-width="2" stroke-linecap="square" fill="currentColor"/>-->
+<!--    </symbol>-->
     <symbol id="triangle" viewBox="0 0 30 34">
         <path
                 d="M29.5938 17.1158L0.767662 33.7586V0.47308L29.5938 17.1158Z"
