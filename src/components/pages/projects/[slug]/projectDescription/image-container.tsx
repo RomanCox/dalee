@@ -30,7 +30,6 @@ export const ImageContainer = memo(({
                 start: "top top",
                 end: "bottom center",
                 scrub: true,
-                markers: index === 1,
             },
             opacity: 1,
         });
