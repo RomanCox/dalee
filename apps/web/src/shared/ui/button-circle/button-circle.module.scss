@@ -1,0 +1,66 @@
+.Button {
+  padding: 0;
+  border-radius: 100%;
+  background: transparent;
+  position: relative;
+  transition: all 0.25s;
+  z-index: 0;
+
+  //&:hover {
+  //  .content {
+  //    border-color: rgb(26, 117, 226);
+  //    background: rgb(26, 117, 226);
+  //    transition: all 0.25s;
+  //
+  //    &:before {
+  //      transition: all 0.25s;
+  //    }
+  //  }
+  //}
+
+  .content {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: inset 1.99px 0 3.98px 0 rgba(255, 255, 255, 0.15),inset 0 0 67.74px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(112.77px);
+    background: rgba(255, 255, 255, 0.03);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s;
+      border-radius: 100%;
+      z-index: -1;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+//.origin {
+//
+//  &:hover {
+//    .content {
+//      border-color: rgb(198, 214, 229);
+//
+//      &:before {
+//        background: rgb(245, 248, 251);
+//      }
+//    }
+//  }
+//
+//  .content {
+//    background: rgb(255, 255, 255);
+//  }
+//}

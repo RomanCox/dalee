@@ -1,0 +1,74 @@
+.modalContent {
+  width: fit-content;
+  cursor: default;
+
+  @media ($mobile) {
+    width: 100%;
+  }
+}
+
+.container {
+  position: relative;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  width: 78vw;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(113px);
+  border-radius: 2rem;
+
+  @media ($mobile) {
+    width: 100%;
+  }
+
+  .play_btn {
+    width: 14.8rem;
+    height: 14.8rem;
+
+    @media ($mobile) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    svg {
+      height: 5.1rem;
+      width: auto;
+      transform: translateX(0.4rem);
+
+      @media ($mobile) {
+        height: auto;
+        width: 1.4rem;
+        transform: translateX(0.2rem);
+      }
+    }
+  }
+
+  .close_btn {
+    position: absolute;
+    right: -4.4rem;
+    top: 2.2rem;
+
+    @media ($mobile) {
+      right: 1rem;
+      top: 1rem;
+    }
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+      transition: transform 0.3s ease;
+
+      @media ($mobile) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    @include hover {
+      &:hover {
+        svg {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}

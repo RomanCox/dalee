@@ -1,0 +1,77 @@
+.modalWrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 2rem;
+  transition: 300ms ease;
+  animation: showWrapper 300ms ease;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: 300ms ease;
+    position: relative;
+    animation: showContent 300ms ease;
+
+    .closeBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1;
+    }
+  }
+}
+
+.opened {
+  opacity: 1;
+  z-index: $modal-z-index;
+  pointer-events: auto;
+
+  & > div {
+    backdrop-filter: blur(5px);
+    transition: backdrop-filter 300ms ease;
+  }
+
+  .content {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.isClosing {
+  animation-direction: reverse;
+
+  .content {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes showWrapper {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

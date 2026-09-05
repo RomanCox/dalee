@@ -1,0 +1,53 @@
+.card {
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.card-solid {
+    backdrop-filter: blur(113px);
+    box-shadow: inset 2px 0 4px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 68px 0 rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  &.card-bg-image {
+    position: relative;
+    overflow: hidden;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: grayscale(100%) brightness(80%);
+    }
+  }
+}
+
+.hoverEffect {
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%) rotate(90deg);
+    --width: 0;
+    --height: 0;
+    width: var(--width);
+    height: var(--height);
+    transition: width 300ms ease, height 300ms ease;
+    filter: blur(7rem);
+    -webkit-backdrop-filter: blur(7rem);
+    @include mars-gradient;
+    z-index: -1;
+  }
+
+  @include hover {
+    &:hover::after {
+      --width: 27.8rem;
+      --height: 24.6rem;
+    }
+  }
+}

@@ -1,0 +1,248 @@
+.sectionWrapper {
+  padding: 29.3rem 3.7rem 0;
+  margin-bottom: 27.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.4rem;
+  position: relative;
+  
+  @media ($mobile) {
+    min-height: 100dvh;
+    padding: 0 1.6rem;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    align-items: stretch;
+  }
+
+  .logo_mobile {
+    display: block;
+    margin: 9.1rem auto 0;
+
+    svg {
+      width: 19.1rem;
+      height: auto;
+    }
+  }
+
+  .titleContainer {
+    width: calc(100% - 82rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 22.3rem;
+
+    @media ($mobile) {
+      width: 100%;
+      position: static;
+      align-self: center;
+    }
+
+    .location {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+
+      @media ($mobile) {
+        margin-bottom: 1.8rem;
+        font-size: 1.6rem;
+        color: rgba($text-color, 0.6);
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+
+    .title {
+      margin-bottom: 1rem;
+
+      @media ($mobile) {
+        margin-bottom: 4.4rem;
+        font-size: 6.4rem;
+        line-height: 100%;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+        }
+      }
+    }
+
+    .description {
+      font-size: 2.4rem;
+      max-width: 68rem;
+      text-align: center;
+
+      @media ($mobile) {
+        font-size: 2rem;
+        max-width: 100%;
+        margin-bottom: 4rem;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mask {
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+
+        .text {
+          transform: translateY(100%);
+
+          @media ($mobile) {
+            line-height: 1.1;
+          }
+        }
+      }
+    }
+  }
+
+  //.location {
+  //  font-size: 2rem;
+  //
+  //  @media ($mobile) {
+  //    margin-top: 15.8rem;
+  //    font-size: 1.6rem;
+  //    color: rgba($text-color, 0.6);
+  //  }
+  //
+  //  .mask {
+  //    display: inline-flex;
+  //    overflow: hidden;
+  //    position: relative;
+  //
+  //    .text {
+  //      transform: translateY(100%);
+  //
+  //      @media ($mobile) {
+  //        line-height: 1.1;
+  //      }
+  //    }
+  //  }
+  //}
+
+  //.titleMobile {
+  //  font-size: 6.4rem;
+  //  line-height: 100%;
+  //}
+
+  //.descriptionMobile {
+  //  width: 28.5rem;
+  //  display: inline-flex;
+  //  flex-direction: column;
+  //  font-size: 2rem;
+  //  line-height: 120%;
+  //  text-align: center;
+  //}
+
+  .arrow {
+    width: 2.4rem;
+    height: 2.4rem;
+    opacity: 0;
+    animation: bounce 2s infinite ease-in-out;
+
+    &::after {
+      width: 2.4rem;
+      height: 2.4rem;
+      filter: blur(5px);
+      top: 0;
+    }
+
+    &:active {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  .backgroundContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+
+    @media ($mobile) {
+      display: none;
+    }
+
+    img {
+      height: auto !important;
+      object-fit: cover;
+    }
+  }
+
+  .background_mobile {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    z-index: -1;
+    object-fit: cover;
+  }
+}
+
+.macOsTitle {
+  line-height: 23rem;
+
+  @media ($mobile) {
+    line-height: 7rem;
+  }
+}
+
+.macOsLocation {
+  transform: translateY(1rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
+  }
+}
+
+.macOsDescription {
+  transform: translateY(-2rem);
+
+  @media ($mobile) {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

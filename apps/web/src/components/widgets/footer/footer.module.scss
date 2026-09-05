@@ -1,0 +1,189 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  background: $less-black;
+
+  @media ($mobile) {
+    //padding: 2rem 3.6rem 130px;
+    padding: 2rem 2.6rem 130px;
+    gap: 1.5rem;
+  }
+
+  .header,
+  .middle,
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header {
+    font-size: 1.6rem;
+    padding: 6.4rem 15rem 5rem;
+
+    @media ($mobile) {
+      padding: 0;
+    }
+
+    .info_list {
+      display: flex;
+      gap: 6.7rem;
+    }
+
+    .info_item {
+      a {
+        @include link-hover-effect;
+      }
+    }
+
+    .info_title {
+      margin-bottom: 0.5rem;
+    }
+
+    .button {
+      max-width: 22.4rem;
+      padding: 1.5rem 1.5rem 1.5rem 2.8rem;
+
+      @media ($mobile) {
+        max-width: 13.8rem;
+        padding: 1rem 1.7rem;
+      }
+
+      svg {
+        width: 2.2rem;
+        height: auto;
+        transform: rotate(-135deg);
+
+        @media ($mobile) {
+          width: 1.2rem;
+        }
+      }
+    }
+  }
+
+  hr {
+    border: none;
+    outline: none;
+    border-top: 3px solid $grey-middle;
+  }
+
+  .middle {
+    height: 3.2rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+
+    @media ($mobile) {
+      height: fit-content;
+    }
+
+    .accordion {
+      height: fit-content;
+      width: 100%;
+      padding: 1rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0.5rem;
+      background: $grey-darkest;
+      font-size: 1rem;
+
+      .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        svg {
+          transform: rotate(45deg);
+          transition: 300ms linear;
+        }
+
+        &.open {
+
+          svg {
+            transform: rotate(0deg);
+          }
+        }
+      }
+
+      .contentContainer {
+        margin-block: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+
+        hr {
+          width: calc(100% - 2rem);
+          border: none;
+          outline: none;
+          border-top: 1px solid $red-100;
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          font-size: 1rem;
+
+          a {
+            display: inline-flex;
+            gap: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    font-size: 1.4rem;
+    padding: 1.7rem 15rem 2.8rem;
+
+    @media ($mobile) {
+      padding: 0;
+      font-size: 0.8rem;
+    }
+  }
+
+  .watermarkContainer {
+    width: 21.7rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .watermark {
+      width: 7.8rem;
+      height: 3.5rem;
+
+      @media ($mobile) {
+        width: 2.2rem;
+        height: auto;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .logo {
+    width: 20rem;
+    height: auto;
+
+    @media ($mobile) {
+      width: 7rem;
+      height: auto;
+    }
+  }
+
+  .x {
+    @media ($mobile) {
+      width: 6rem;
+      height: auto;
+    }
+  }
+}
+
+.logosContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+}

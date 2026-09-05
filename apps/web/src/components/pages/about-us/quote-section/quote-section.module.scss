@@ -1,0 +1,222 @@
+.section {
+  margin-bottom: 27.5rem;
+
+  @media ($mobile) {
+    margin-block: 6rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    font-size: 11rem;
+    align-items: center;
+    justify-content: center;
+
+    @media ($mobile) {
+      font-size: 3.2rem;
+      margin-bottom: 7.1rem;
+    }
+
+    .rowContainer {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      position: relative;
+
+      .image_container {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        height: 10rem;
+        width: 25.5rem;
+        border-radius: 20.2rem;
+        opacity: 0;
+        transition: opacity var(--duration) ease;
+
+        @media ($mobile) {
+          height: 3.6rem;
+          width: 8rem;
+        }
+
+        img {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      .displayedImage {
+        opacity: 1;
+      }
+
+      .text {
+        font-size: 12.8rem;
+        line-height: 12.2rem;
+
+        @media ($mobile) {
+          font-size: 3.2rem;
+          line-height: 3.6rem;
+        }
+
+        span {
+          color: $bg-color;
+          transition: color 100ms ease;
+        }
+
+        .coloredSymbol {
+          color: $text-color;
+        }
+      }
+    }
+
+    .authorContainer {
+      width: 100%;
+      padding-inline: 30rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      opacity: 0;
+      transition: opacity 300ms ease;
+
+      @media ($mobile) {
+        margin-top: 2rem;
+        padding-inline: 1.5rem;
+      }
+
+      p {
+        font-size: 2.4rem;
+
+        @media ($mobile) {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .displayedAuthor {
+      opacity: 1;
+    }
+  }
+
+  .row {
+    display: flex;
+    gap: 1.4rem;
+    align-items: center;
+
+    .text {
+      font-size: 12.8rem;
+
+      @media ($mobile) {
+        line-height: 3.6rem;
+      }
+
+      span {
+        color: $bg-color;
+        transition: color 100ms ease;
+      }
+
+      .coloredSymbol {
+        color: $text-color;
+      }
+    }
+  }
+
+  .socialsContainer {
+    width: 30rem;
+    height: 10rem;
+    border-radius: 5rem;
+    box-shadow: inset 1.83px 0 3.65px 0 rgba(255, 255, 255, 0.15),inset 0 0 62.06px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(100px);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    position: absolute;
+    top: 50%;
+    left: -25rem;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--duration) ease;
+
+    .social {
+      width: 5.6rem;
+      height: 5.6rem;
+      border-radius: 0.6rem;
+      padding: 1rem;
+      background: $grey-middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .image_container {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 10rem;
+    width: 25.5rem;
+    border-radius: 20.2rem;
+    opacity: 0;
+    transition: opacity var(--duration) ease;
+
+    @media ($mobile) {
+      height: 3.6rem;
+      width: 8rem;
+    }
+
+    img {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .displayedImage {
+    opacity: 1;
+  }
+
+  @media ($mobile) {
+    margin-bottom: 6rem;
+
+    .container_mobile {
+      font-size: 3.2rem;
+      margin-bottom: 7.1rem;
+
+      h3 {
+        line-height: 3.6rem;
+      }
+
+      .image_container {
+        width: 7.9rem;
+        height: 3rem;
+        opacity: 1;
+      }
+
+      .row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+.lastRowsContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+
+@keyframes showImage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
