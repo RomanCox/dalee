@@ -1,5 +1,3 @@
-"use client";
-
 import { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 

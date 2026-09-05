@@ -1,8 +1,6 @@
-"use client";
-
 import {useWindowSize} from "@react-hook/window-size";
 import clsx from "clsx";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import {memo, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState,} from "react";
 import {Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -10,7 +8,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Icon} from "@/shared/ui/icon/icon";
 import {Text} from "@/shared/ui/text/text";
 
-import ArrowIcon from "@/assets/icons/common/arrow.svg";
+import ArrowIcon from "@/assets/icons/common/arrow.svg?react";
 
 import {TProject} from "@/types/projects.type";
 import {generateImageUrl} from "@/utils/helpers";
@@ -18,7 +16,7 @@ import {generateImageUrl} from "@/utils/helpers";
 import styles from "./new-projects-section.module.scss";
 import "swiper/css";
 import "swiper/css/pagination";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 interface IWindowSize {
   width: number | null;
@@ -450,7 +448,7 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
 
               {slides.map((slide, index) => (
                 <Link
-                  key={slide.title + index} href={`/projects/${slide.slug}`}
+                  key={slide.title + index} to={"/projects/$slug"} params={{ slug: slide.slug }}
                   className={clsx(styles.slideWrapper, slideMods(slide.id))}
                   style={{
                     transform: `translateX(${translateX}px)`,

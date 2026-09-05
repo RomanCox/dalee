@@ -1,16 +1,14 @@
-import {StaticImageData} from "next/image";
-
-import image1 from "/public/images/mission/mission1.jpg";
-import videoImage from "/public/images/mission/mission-video-image.jpg";
-import image2 from "/public/images/mission/mission2.jpg";
+const image1 = "/images/mission/mission1.jpg";
+const videoImage = "/images/mission/mission-video-image.jpg";
+const image2 = "/images/mission/mission2.jpg";
 
 export const coloringInterval = 100;
 export const imageAnimationDuration = 1000;
 
 export interface IMissionItem {
     id: number,
-    label: string | Array<string | StaticImageData>,
-    image?: StaticImageData,
+    label: string | Array<string>,
+    image?: string,
     imagePosition?: "start" | "end" | "center",
 }
 

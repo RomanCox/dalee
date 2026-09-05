@@ -1,11 +1,10 @@
-import {StaticImageData} from "next/image";
-import Employee from "/public/images/about/employee.png";
-import Team from "/public/images/about/team.png";
-import OtherEmployee from "/public/images/about/otherEmployee.png";
+const Employee = "/images/about/employee.png";
+const Team = "/images/about/team.png";
+const OtherEmployee = "/images/about/otherEmployee.png";
 
 interface ITeamPhoto {
     id: number;
-    photo: StaticImageData,
+    photo: string,
 }
 
 export const teamPhotos: ITeamPhoto[] = [
@@ -25,7 +24,7 @@ export const teamPhotos: ITeamPhoto[] = [
 
 export interface IEmployee {
     id: number,
-    image: StaticImageData,
+    image: string,
     name: string,
     position: string,
     quote: string,
@@ -95,7 +94,7 @@ export const SliderTime = 10000;
 
 export interface IOtherEmployee {
     id: number;
-    photo: StaticImageData;
+    photo: string;
 }
 
 export const otherEmployees: IOtherEmployee[] = [

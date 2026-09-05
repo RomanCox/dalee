@@ -1,8 +1,5 @@
-"use client";
-
 import { useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 import { gsap, useGSAP } from "@/lib/gsapSetup";
 import { useLenis } from "lenis/react";
@@ -133,7 +130,7 @@ const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
                         </span>
           ))}
         </p>
-        <Link
+        <a
           ref={arrow}
           href={"#mission"}
           onClick={(e) => {
@@ -143,7 +140,7 @@ const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
           className={styles.arrow}
         >
           <Icon width="59" height="67" name="arrow-down" />
-        </Link>
+        </a>
       </div>
 
       <motion.div ref={background} className={styles.backgroundContainer} style={{ y }}>

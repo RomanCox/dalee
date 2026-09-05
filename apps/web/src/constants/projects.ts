@@ -1,11 +1,9 @@
-import {StaticImageData} from "next/image";
-
-import patriki from "../../public/images/projects/patriki.png"
-import elizabethPark from "../../public/images/projects/elizabethPark.png"
-import europeCity from "../../public/images/projects/europeCity.png"
-import svetlograd from "../../public/images/projects/svetlograd.png"
-import coloredBoulevard from "../../public/images/projects/coloredBoulevard.png"
-import origami from "../../public/images/projects/origami.png"
+const patriki = "/images/projects/patriki.png";
+const elizabethPark = "/images/projects/elizabethPark.png";
+const europeCity = "/images/projects/europeCity.png";
+const svetlograd = "/images/projects/svetlograd.png";
+const coloredBoulevard = "/images/projects/coloredBoulevard.png";
+const origami = "/images/projects/origami.png";
 
 export interface ISlide {
     id: number;
@@ -15,7 +13,7 @@ export interface ISlide {
     location?: string;
     area?: string;
     year?: string;
-    image?: StaticImageData;
+    image?: string;
 }
 
 export const slides: ISlide[] = [

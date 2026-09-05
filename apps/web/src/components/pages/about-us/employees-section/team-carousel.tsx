@@ -3,7 +3,7 @@ import {memo, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {IOtherEmployee, SliderTime} from "@/constants/employees";
 
 import styles from "./team-carousel.module.scss";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 
 type CoefficientType = 0 | 1;

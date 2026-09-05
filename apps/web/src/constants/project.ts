@@ -1,15 +1,14 @@
-import {StaticImageData} from "next/image";
-import patrikiTitle from "/public/images/projects/patriki/patriki_title.png";
-import mainSlide from "/public/images/projects/patriki/main_slide.png";
-import conceptSlide1 from "/public/images/projects/patriki/concept_slide1.png";
-import conceptSlide2 from "/public/images/projects/patriki/concept_slide2.png";
-import conceptSlide3 from "/public/images/projects/patriki/concept_slide3.png";
-import generalPlanSlide1 from "/public/images/projects/patriki/general_plan_slide1.png";
-import generalPlanSlide2 from "/public/images/projects/patriki/general_plan_slide2.png";
-import architectureSlide1 from "/public/images/projects/patriki/architecture_slide1.png";
+const patrikiTitle = "/images/projects/patriki/patriki_title.png";
+const mainSlide = "/images/projects/patriki/main_slide.png";
+const conceptSlide1 = "/images/projects/patriki/concept_slide1.png";
+const conceptSlide2 = "/images/projects/patriki/concept_slide2.png";
+const conceptSlide3 = "/images/projects/patriki/concept_slide3.png";
+const generalPlanSlide1 = "/images/projects/patriki/general_plan_slide1.png";
+const generalPlanSlide2 = "/images/projects/patriki/general_plan_slide2.png";
+const architectureSlide1 = "/images/projects/patriki/architecture_slide1.png";
 
-import svetlograd from "/public/images/projects/svetlograd.png";
-import origami from "/public/images/projects/origami.png";
+const svetlograd = "/images/projects/svetlograd.png";
+const origami = "/images/projects/origami.png";
 
 const slideTypes = ["Концепция", "Генплан", "Архитектура"] as const;
 export type SlideType = (typeof slideTypes)[number];
@@ -21,18 +20,18 @@ interface IDescriptionProject {
 
 interface IMainSlide {
     description: IDescriptionProject[],
-    image: StaticImageData;
+    image: string;
 }
 
 export interface ISlide {
     title: SlideType;
     description: string,
-    image: StaticImageData;
+    image: string;
 }
 
 export interface IProjectData {
     id: string;
-    title: StaticImageData;
+    title: string;
     label: string;
     mainSlide: IMainSlide;
     slideTypes: SlideType[];
@@ -111,7 +110,7 @@ export const projectData: IProjectData = {
 }
 
 export interface IProjectLink {
-    image: StaticImageData,
+    image: string,
     position: "left" | "center" | "right",
     title: string,
     slug: string,

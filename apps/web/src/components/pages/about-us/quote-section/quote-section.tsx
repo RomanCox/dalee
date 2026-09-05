@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 import { useLenis } from "lenis/react";
 import { gsap, useGSAP } from "@/lib/gsapSetup"

@@ -15,5 +15,22 @@ export default defineConfig({
       '@': import.meta.dirname + '/src',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // vars.scss ($переменные и @mixin) доступен без явного @import в каждом *.module.scss —
+        // так было настроено в исходном Next-проекте (sassOptions.prependData).
+        // Сам vars.scss из этого правила исключаем, иначе получится самоимпорт.
+        additionalData: (source: string, filename: string) => {
+          const varsPath = (import.meta.dirname + '/src/styles/vars').replace(/\\/g, '/');
+          if (filename.replace(/\\/g, '/').endsWith('/src/styles/vars.scss')) {
+            return source;
+          }
+          return `@import "${varsPath}";\n${source}`;
+        },
+        silenceDeprecations: ['import'],
+      },
+    },
+  },
   server: { port: 3000 },
 })

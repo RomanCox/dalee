@@ -1,5 +1,3 @@
-"use client";
-
 import { memo, useCallback, useState } from "react";
 import {useMediaQuery} from "@/shared/hooks/use-match-media";
 import { useWindowHeight, useWindowWidth } from "@react-hook/window-size";

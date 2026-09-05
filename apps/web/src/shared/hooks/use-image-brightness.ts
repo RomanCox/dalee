@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from "react";
-import {StaticImageData} from "next/image";
 import {getImageBrightness} from "@/shared/helpers/getImageBrightness";
 
 interface IOptions {
@@ -9,7 +8,7 @@ interface IOptions {
     sh?: number;
 }
 
-export const useImageBrightness = (image: StaticImageData, setTextColor: (color: string) => void, options?: IOptions) => {
+export const useImageBrightness = (image: string, setTextColor: (color: string) => void, options?: IOptions) => {
     const [brightness, setBrightness] = useState<number | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -17,14 +16,16 @@ export const useImageBrightness = (image: StaticImageData, setTextColor: (color:
         const canvas = canvasRef.current;
         const context = canvas!.getContext('2d');
         const imageElement = new Image();
-        imageElement.src = image.src;
+        imageElement.src = image;
 
         imageElement.onload = () => {
             if (canvas && context) {
-                canvas.width = image.width;
-                canvas.height = image.height;
+                const width = imageElement.naturalWidth;
+                const height = imageElement.naturalHeight;
+                canvas.width = width;
+                canvas.height = height;
                 context.drawImage(imageElement, 0, 0);
-                const imageData = context.getImageData(options?.sx || 0, options?.sy || 0, options?.sw || image.width, options?.sh || 100);
+                const imageData = context.getImageData(options?.sx || 0, options?.sy || 0, options?.sw || width, options?.sh || 100);
                 const brightness = getImageBrightness(imageData);
                 setBrightness(brightness);
             }

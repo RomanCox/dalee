@@ -1,5 +1,3 @@
-"use client";
-
 import {memo} from "react";
 
 import {RequestSection} from "@/components/widgets/request-section/request-section";

@@ -1,6 +1,6 @@
-const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-const NEW_BASE_URL = process.env.NEXT_PUBLIC_LOCAL_STRAPI_URL;
-export const TELEGRAM_BASE_URL = `${process.env.NEXT_PUBLIC_TELEGRAM_URL}${process.env.NEXT_PUBLIC_BOT_TOKEN}`;
+const BASE_URL = import.meta.env.VITE_STRAPI_URL;
+const NEW_BASE_URL = import.meta.env.VITE_LOCAL_STRAPI_URL;
+export const TELEGRAM_BASE_URL = `${import.meta.env.VITE_TELEGRAM_URL}${import.meta.env.VITE_BOT_TOKEN}`;
 
 export async function fetchInstance<T>(
   path: string,
@@ -9,9 +9,6 @@ export async function fetchInstance<T>(
   const response = await fetch(`${BASE_URL}/api${path}`, {
     headers: {
       "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 180,
     },
     ...options,
   });
@@ -30,9 +27,6 @@ export async function newFetchInstance<T>(
   const response = await fetch(`${NEW_BASE_URL}/api${path}`, {
     headers: {
       "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 180,
     },
     ...options,
   });

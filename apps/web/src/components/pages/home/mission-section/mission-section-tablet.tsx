@@ -1,7 +1,5 @@
-"use client";
-
 import { memo, useRef, useState } from "react";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 import { gsap, useGSAP } from "@/lib/gsapSetup";
 import { RowTablet } from "./row-tablet";

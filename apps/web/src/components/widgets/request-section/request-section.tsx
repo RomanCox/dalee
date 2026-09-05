@@ -1,5 +1,3 @@
-"use client";
-
 import { gsap, useGSAP } from "@/lib/gsapSetup";
 import { memo, useEffect, useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -72,7 +70,7 @@ export const RequestSection = memo(
 
     const onSubmit = async (data: TRequestForm) => {
       const response = await RequestService.send({
-        chat_id: process.env.NEXT_PUBLIC_CHAT_ID,
+        chat_id: import.meta.env.VITE_CHAT_ID,
         text: `<b>Новая заявка</b>\n\nИмя: <b>${
           data.name
         }</b>\nТелефон: <b>${data.phone.replaceAll(

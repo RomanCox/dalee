@@ -1,5 +1,5 @@
 import {memo, MouseEvent, useCallback, useMemo, useState} from "react";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 
 import useMousePosition from "@/shared/hooks/use-mouse-position";

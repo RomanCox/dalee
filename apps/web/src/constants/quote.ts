@@ -1,15 +1,13 @@
-import {StaticImageData} from "next/image";
-
-import quoteImage1 from "/public/images/about/quote-image1.png";
-import quoteImage2 from "/public/images/about/quote-image2.png";
+const quoteImage1 = "/images/about/quote-image1.png";
+const quoteImage2 = "/images/about/quote-image2.png";
 
 export const coloringInterval = 100;
 export const imageAnimationDuration = 1000;
 
 export interface IQuoteItem {
     id: number,
-    label: string | Array<string | StaticImageData>,
-    image?: StaticImageData,
+    label: string | Array<string>,
+    image?: string,
     imagePosition?: "start" | "end" | "center",
 }
 

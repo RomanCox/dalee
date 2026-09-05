@@ -1,5 +1,3 @@
-"use client";
-
 import {CSSProperties, forwardRef} from "react";
 
 import useMousePosition from "@/shared/hooks/use-mouse-position";

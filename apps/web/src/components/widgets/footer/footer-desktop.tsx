@@ -1,23 +1,23 @@
-import Image from "next/image";
 import { memo } from "react";
+import { Link } from "@tanstack/react-router";
 
+import Image from "@/shared/ui/image/image";
 import Button from "@/components/ui/button/button";
-
 import Icon from "@/components/ui/icon";
 import LogoFullIcon from "@/components/ui/logo-full";
-import watermark from "/public/images/watermark.png";
 
 import styles from "@/components/widgets/footer/footer.module.scss";
 import { SocialItems } from "@/components/widgets/social-items/social-items";
 import { TCommon } from "@/types/common.type";
-import Link from "next/link";
+
+const watermark = "/images/watermark.png";
 
 export const FooterDesktop = memo(
   ({ commonData }: { commonData?: TCommon }) => {
     return (
       <>
         <div className={styles.header}>
-          <Link href={"/"}>
+          <Link to={"/"}>
             <LogoFullIcon className={styles.logo} />
           </Link>
           <ul className={styles.info_list}>

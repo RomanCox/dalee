@@ -1,6 +1,6 @@
 import {memo, useMemo, useRef, useState} from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "@/shared/ui/image/image";
+import { Link } from "@tanstack/react-router";
 import clsx from "clsx";
 
 import {useOnScreen} from "@/shared/hooks/use-on-screen";
@@ -58,7 +58,8 @@ export const ProjectCard = memo(({project, index, isMobile}: ProjectCardProps) =
             />
             <Link
                 className={styles.projectCardLink}
-                href={"/projects/patriki"}
+                to={"/projects/$slug"}
+                params={{ slug: "patriki" }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >

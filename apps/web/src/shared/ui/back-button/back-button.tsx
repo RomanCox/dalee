@@ -1,5 +1,5 @@
 import {memo, ReactNode} from "react";
-import {useRouter} from "next/navigation";
+import {useRouter} from "@tanstack/react-router";
 import clsx from "clsx";
 
 interface BackButtonProps {
@@ -12,7 +12,7 @@ export const BackButton = memo(({children, onClick, className}: BackButtonProps)
     const router = useRouter();
 
     const onBackHandler = () => {
-        router.back();
+        router.history.back();
         onClick?.()
     };
 

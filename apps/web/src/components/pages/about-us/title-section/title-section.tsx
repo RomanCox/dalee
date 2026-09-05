@@ -1,8 +1,6 @@
-"use client";
-
 import { memo, useLayoutEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "@/shared/ui/image/image";
+import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { gsap, useGSAP } from "@/lib/gsapSetup";
 import { useLenis } from "lenis/react";
@@ -15,8 +13,8 @@ import { AboutCard } from "@/components/pages/about-us/title-section/about-card"
 import LogoIcon from "@/components/ui/logo";
 import Icon from "@/components/ui/icon";
 
-import background from "/public/images/about/about-us-page-background.png";
-import mobileBackground from "/public/images/projects/projects-page-mobile-bg.png";
+const background = "/images/about/about-us-page-background.png";
+const mobileBackground = "/images/projects/projects-page-mobile-bg.png";
 
 import { TAboutCard } from "@/types/about-card.type";
 import { IAboutUsData } from "@/constants/about-us";
@@ -107,7 +105,7 @@ export const TitleSection = memo(({ isMobile, aboutUsCards, aboutUsData }: Title
   return (
     <section ref={containerRef} className={styles.sectionWrapper}>
       {isMobile && (
-        <Link href={"/"} className={styles.logo_mobile}>
+        <Link to={"/"} className={styles.logo_mobile}>
           <LogoIcon />
         </Link>
       )}
@@ -138,7 +136,7 @@ export const TitleSection = memo(({ isMobile, aboutUsCards, aboutUsData }: Title
         </p>
 
         {isMobile && (
-          <Link
+          <a
             ref={arrowRef}
             href={"#cards"}
             onClick={(e) => {
@@ -148,7 +146,7 @@ export const TitleSection = memo(({ isMobile, aboutUsCards, aboutUsData }: Title
             className={styles.arrow}
           >
             <Icon width="59" height="67" name="arrow-down" />
-          </Link>
+          </a>
         )}
       </div>
 

@@ -1,7 +1,7 @@
 import {detect} from "detect-browser";
 
 export const generateImageUrl = (path: string) => {
-  return `${process.env.NEXT_PUBLIC_LOCAL_STRAPI_URL}${path}`;
+  return `${import.meta.env.VITE_LOCAL_STRAPI_URL}${path}`;
 };
 
 export const isApple = () => {

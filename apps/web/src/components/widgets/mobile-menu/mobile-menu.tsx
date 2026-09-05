@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
 } from "react";
-import Link from "next/link";
 import clsx from "clsx";
 
 import { SocialItems } from "@/components/widgets/social-items/social-items";
@@ -76,15 +75,15 @@ export const MobileMenu = memo((props: MobileMenuProps) => {
           className={styles.mobileMenuContainer}
           onClick={(e) => e.stopPropagation()}>
           <div className={styles.menu}>
-            <Link
+            <a
               href={`tel:${commonData?.contacts.phone}`}
               className={styles.navItem}>
               {commonData?.contacts.phone}
-            </Link>
+            </a>
             {commonData?.navigation.map((item) => (
-              <Link key={item.id} href={item.link} className={styles.navItem} onClick={closeHandler}>
+              <a key={item.id} href={item.url} className={styles.navItem} onClick={closeHandler}>
                 {item.title}
-              </Link>
+              </a>
             ))}
             <SocialItems
               items={commonData?.socials}

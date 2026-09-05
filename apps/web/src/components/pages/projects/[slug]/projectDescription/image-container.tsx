@@ -1,7 +1,5 @@
-"use client";
-
 import {memo, useEffect, useRef} from "react";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import gsap from "gsap";
 
 import {ISlide} from "@/constants/project";

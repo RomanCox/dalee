@@ -1,13 +1,11 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import styles from "./header.module.scss";
 import LogoIcon from "@/components/ui/logo";
 import clsx from "clsx";
 import { useRef, useState } from "react";
 import { useLenis } from "lenis/react";
 import { TCommon } from "@/types/common.type";
-import {useHeaderContext} from "@/app/context/header-context";
+import {useHeaderContext} from "@/shared/context/header-context";
 
 const Header = ({ commonData }: { commonData?: TCommon }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +27,7 @@ const Header = ({ commonData }: { commonData?: TCommon }) => {
       ref={container}
       className={clsx(styles.header, scrolled && styles.scrolled)}>
       <span className={styles.logo} style={{color: logoColor}}>
-        <Link href={"/"}>
+        <Link to={"/"}>
           <LogoIcon />
         </Link>
       </span>
@@ -40,7 +38,7 @@ const Header = ({ commonData }: { commonData?: TCommon }) => {
         <ul className={styles.links}>
           {commonData?.navigation.map((item) => (
             <li key={item.id} className={styles.links_item}>
-              <Link href={item.url}>{item.title}</Link>
+              <a href={item.url}>{item.title}</a>
             </li>
           ))}
         </ul>

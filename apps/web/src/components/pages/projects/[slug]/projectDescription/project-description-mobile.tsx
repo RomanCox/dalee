@@ -1,8 +1,6 @@
-"use client";
-
 import {memo, useCallback, useMemo, useState} from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "@/shared/ui/image/image";
+import { Link } from "@tanstack/react-router";
 import {clsx} from "clsx";
 import {Swiper, SwiperSlide} from "swiper/react";
 
@@ -107,7 +105,8 @@ export const ProjectDescriptionMobile = memo(({projectData}: ProjectDescriptionP
                 {projectLinksData.map(item => (
                     <Link
                         key={item.title}
-                        href={`/projects/${item.slug}`}
+                        to={"/projects/$slug"}
+                        params={{ slug: item.slug }}
                         className={clsx(styles.projectLink, {
                             [styles.prevLink]: item.position === "left",
                             [styles.nextLink]: item.position === "right",

@@ -1,8 +1,6 @@
-"use client";
-
 import { useWindowSize } from "@react-hook/window-size";
 import clsx from "clsx";
-import Image from "next/image";
+import Image from "@/shared/ui/image/image";
 import {
   memo,
   MouseEvent,
@@ -20,7 +18,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Icon } from "@/shared/ui/icon/icon";
 import { Text } from "@/shared/ui/text/text";
 
-import ArrowIcon from "@/assets/icons/common/arrow.svg";
+import ArrowIcon from "@/assets/icons/common/arrow.svg?react";
 
 // import { TProjectWithId } from "@/types/projects.type";
 import { TProject } from "@/types/projects.type";

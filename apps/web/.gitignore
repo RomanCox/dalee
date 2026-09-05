@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# эталонная копия старого Next-приложения на время миграции, только для чтения
+_next_app
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

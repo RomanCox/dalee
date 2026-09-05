@@ -1,5 +1,3 @@
-"use client";
-
 // import { memo, useEffect, useState } from "react";
 import { memo } from "react";
 // import { useWindowWidth } from "@react-hook/window-size";

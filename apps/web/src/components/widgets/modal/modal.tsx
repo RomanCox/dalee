@@ -1,5 +1,3 @@
-"use client";
-
 import {MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState} from "react";
 import clsx from "clsx";
 

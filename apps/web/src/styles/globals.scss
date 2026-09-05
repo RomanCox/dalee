@@ -1,6 +1,51 @@
 @import "./normalize";
 @import "./vars";
 
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Saar SP Demo";
+  src: url("../fonts/SaarSPDemo.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adderley";
+  src: url("../fonts/AdderleyBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-saar-sp-demo: "Saar SP Demo";
+  --font-adderley: "Adderley";
+}
+
 html {
   font-size: calc(100vw / 1920 * 10);
   scroll-margin-top: $header-h;
@@ -17,6 +62,7 @@ html {
 body {
   background-color: $bg-color;
   color: $text-color;
+  font-family: "Lato", sans-serif;
   scrollbar-width: thin;
 }
 

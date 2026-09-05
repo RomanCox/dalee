@@ -1,20 +1,17 @@
-"use client";
-
 import {memo, useState} from "react";
-import {StaticImageData} from "next/image";
 import clsx from "clsx";
 
 import {ProjectCard} from "@/components/pages/projects/all-projects/projects-section/project-card";
 
-import offices from "/public/images/projects/projectsPage/offices.png";
-import elizePark from "/public/images/projects/projectsPage/elize-park.png";
-import patriki from "/public/images/projects/projectsPage/patriki.png";
-import area8 from "/public/images/projects/projectsPage/8-area.png";
-import coloredBoulevard from "/public/images/projects/projectsPage/colored-boulevard.png";
-import origami from "/public/images/projects/projectsPage/origami.png";
-import arctic from "/public/images/projects/projectsPage/arctic.png";
-import dune from "/public/images/projects/projectsPage/dune.png";
-import svetlograd from "/public/images/projects/projectsPage/svetlograd.png";
+const offices = "/images/projects/projectsPage/offices.png";
+const elizePark = "/images/projects/projectsPage/elize-park.png";
+const patriki = "/images/projects/projectsPage/patriki.png";
+const area8 = "/images/projects/projectsPage/8-area.png";
+const coloredBoulevard = "/images/projects/projectsPage/colored-boulevard.png";
+const origami = "/images/projects/projectsPage/origami.png";
+const arctic = "/images/projects/projectsPage/arctic.png";
+const dune = "/images/projects/projectsPage/dune.png";
+const svetlograd = "/images/projects/projectsPage/svetlograd.png";
 
 import styles from "./projects-section.module.scss";
 
@@ -32,7 +29,7 @@ enum StatusType {
 
 export interface IProject {
     id: number;
-    image: StaticImageData;
+    image: string;
     title: string;
     status?: StatusType;
     year?: string;

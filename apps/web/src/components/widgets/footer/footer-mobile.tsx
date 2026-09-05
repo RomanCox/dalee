@@ -1,5 +1,3 @@
-"use client";
-
 import { memo, useCallback, useState } from "react";
 import clsx from "clsx";
 
@@ -11,7 +9,7 @@ import Icon from "@/components/ui/icon";
 import styles from "@/components/widgets/footer/footer.module.scss";
 import { SocialItems } from "@/components/widgets/social-items/social-items";
 import { TCommon } from "@/types/common.type";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 export const FooterMobile = memo(({ commonData }: { commonData?: TCommon }) => {
   const [isAccordionOpen, setIsAccordionOpen] = useState<boolean>(false);
@@ -71,7 +69,7 @@ export const FooterMobile = memo(({ commonData }: { commonData?: TCommon }) => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.logosContainer}>
-          <Link href={"/"}>
+          <Link to={"/"}>
             <LogoFullIcon className={styles.logo} />
           </Link>
           <Icon name={"x-small"} width={"0.8rem"} height={"0.8rem"} />

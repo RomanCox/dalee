@@ -1,5 +1,3 @@
-"use client";
-
 import { InputHTMLAttributes, ReactNode } from "react";
 import Icon from "../icon";
 import { InputMask } from "@react-input/mask";

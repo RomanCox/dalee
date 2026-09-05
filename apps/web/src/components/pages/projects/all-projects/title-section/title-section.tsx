@@ -1,20 +1,18 @@
-"use client";
-
 import { memo, useLayoutEffect, useRef, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "@/shared/ui/image/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import clsx from "clsx";
 import { gsap, useGSAP } from "@/lib/gsapSetup";
 
 import { isApple } from "@/utils/helpers";
 
-import background from "/public/images/projects/projects-page-background.png";
-import mobileBackground from "/public/images/projects/projects-page-mobile-bg.png";
+const background = "/images/projects/projects-page-background.png";
+const mobileBackground = "/images/projects/projects-page-mobile-bg.png";
 
 import styles from "./title-section.module.scss";
 import LogoIcon from "@/components/ui/logo";
 import Icon from "@/components/ui/icon";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { useLenis } from "lenis/react";
 
 interface TitleSectionProps {
@@ -22,7 +20,7 @@ interface TitleSectionProps {
     location: string;
     title: string;
     description: string[];
-    background: StaticImageData;
+    background: string;
   };
   isMobile: boolean;
 }
@@ -100,7 +98,7 @@ export const TitleSection = memo(({ isMobile, data = titleSectionData }: TitleSe
   return (
     <section ref={container} className={styles.sectionWrapper}>
       {isMobile && (
-        <Link href={"/"} className={styles.logo_mobile}>
+        <Link to={"/"} className={styles.logo_mobile}>
           <LogoIcon />
         </Link>
       )}
@@ -128,7 +126,7 @@ export const TitleSection = memo(({ isMobile, data = titleSectionData }: TitleSe
             </span>
           ))}
         </p>
-        <Link
+        <a
           ref={arrow}
           href={"#projects"}
           onClick={(e) => {
@@ -138,7 +136,7 @@ export const TitleSection = memo(({ isMobile, data = titleSectionData }: TitleSe
           className={styles.arrow}
         >
           <Icon width="59" height="67" name="arrow-down" />
-        </Link>
+        </a>
       </div>
 
       {isMobile ? (

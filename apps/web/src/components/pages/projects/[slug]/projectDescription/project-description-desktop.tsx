@@ -1,15 +1,13 @@
-"use client";
-
 import {memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "@tanstack/react-router";
+import Image from "@/shared/ui/image/image";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {clsx} from "clsx";
 import {useLenis} from "lenis/react";
 import {useWindowWidth} from "@react-hook/window-size";
 
-import {useHeaderContext} from "@/app/context/header-context";
+import {useHeaderContext} from "@/shared/context/header-context";
 import {useImageBrightness} from "@/shared/hooks/use-image-brightness";
 import {useCoefficient} from "@/shared/hooks/use-coefficient";
 
@@ -115,9 +113,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
         slideRefs.current[index] = el;
     };
 
-    if (typeof window !== "undefined") {
-        gsap.registerPlugin(ScrollTrigger);
-    }
+    gsap.registerPlugin(ScrollTrigger);
 
     const lenis = useLenis();
 
@@ -267,7 +263,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
                     </div>
 
                     <div className={styles.backButtonAndTitleBlock} ref={titleBlockRef}>
-                        <Link href={"/projects"} className={styles.backButton}>
+                        <Link to={"/projects"} className={styles.backButton}>
                             <ButtonCircle as={"div"} className={styles.circle}>
                                 <Icon name="arrow-down" width="12" height="12"/>
                             </ButtonCircle>
@@ -292,7 +288,7 @@ export const ProjectDescriptionDesktop = memo(({requestSection, projectData}: Pr
 
             <div className={styles.projectLinksContainer}>
                 {projectLinks.map(item => (
-                    <Link key={item.slug} href={item.slug}
+                    <Link key={item.slug} to={item.slug}
                           className={clsx(styles.projectLink, {[styles.centerLink]: item.position === "center"})}>
                         <Image src={item.image} alt={"image"} className={styles.image}/>
                         <div className={clsx(styles.projectLinkContent, {[styles[item.position]]: true})}>
