@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+# strapi
+apps/cms/.tmp/
+apps/cms/.cache/
+apps/cms/build/
+apps/cms/dist/
+apps/cms/public/uploads/*
+!apps/cms/public/uploads/.gitkeep
+apps/cms/.strapi/
+
+# misc
+.DS_Store
+*.log
+.vite/
