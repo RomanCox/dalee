@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "about_cards",
+  "info": {
+    "singularName": "about-card",
+    "pluralName": "about-cards",
+    "displayName": "AboutCard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "onlyShowOnAboutUsPage": {
+      "type": "boolean",
+      "required": true
+    },
+    "homePageOrder": {
+      "type": "integer",
+      "required": true
+    },
+    "aboutUsPageOrder": {
+      "type": "integer",
+      "required": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "card-solid",
+        "title"
+      ]
+    }
+  }
+}

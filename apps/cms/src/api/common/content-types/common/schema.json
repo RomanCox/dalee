@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "commons",
+  "info": {
+    "singularName": "common",
+    "pluralName": "commons",
+    "displayName": "Common"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ourVacanciesLink": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "contacts": {
+      "type": "component",
+      "component": "common.contacts",
+      "repeatable": false
+    },
+    "navigation": {
+      "type": "component",
+      "component": "common.navigation",
+      "repeatable": true
+    },
+    "socials": {
+      "type": "component",
+      "component": "common.socials",
+      "repeatable": true
+    }
+  }
+}

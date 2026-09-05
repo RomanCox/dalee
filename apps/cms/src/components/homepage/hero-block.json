@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_homepage_hero_blocks",
+  "info": {
+    "displayName": "heroBlock"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "json",
+      "required": true
+    },
+    "description": {
+      "type": "json",
+      "required": true
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "backgroundMobile": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}
