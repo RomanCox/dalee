@@ -60,7 +60,6 @@ export const RequestSection = memo(
     );
 
     const {
-      register,
       control,
       formState: { errors },
       clearErrors,
@@ -117,6 +116,7 @@ export const RequestSection = memo(
             rules={{ required: "Это поле обязательно" }}
             render={({ field }) => (
               <Input
+                {...field}
                 type="text"
                 icon={<Icon name="user" height="34" width="34" />}
                 placeholder="Ваше имя"
@@ -130,6 +130,7 @@ export const RequestSection = memo(
             rules={{ required: "Это поле обязательно" }}
             render={({ field }) => (
               <Input
+                {...field}
                 type="phone"
                 icon={<Icon name="phone" height="34" width="34" />}
                 placeholder="Ваш номер телефона"

@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import styles from './text.module.scss';
 
-export enum TextAlign {
+enum TextAlign {
     RIGHT = 'right',
     CENTER = 'center',
     LEFT = 'left',

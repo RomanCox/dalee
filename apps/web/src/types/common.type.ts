@@ -1,4 +1,4 @@
-import { NewTStrapiMedia, TStrapiMedia } from "./strapi.type";
+import { NewTStrapiMedia } from "./strapi.type";
 
 export type TCommon = {
   navigation: TNavigationItem[];

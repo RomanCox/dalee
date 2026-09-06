@@ -3,7 +3,7 @@ export const TELEGRAM_BASE_URL = `${import.meta.env.VITE_TELEGRAM_URL}${import.m
 
 export async function fetchInstance<T>(
   path: string,
-  options?: any,
+  options?: RequestInit,
 ): Promise<T> {
   const response = await fetch(`${BASE_URL}/api${path}`, {
     headers: {

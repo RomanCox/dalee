@@ -3,7 +3,7 @@ import { fetchInstance } from "./config";
 
 export const ProjectCategoryService = {
   async getAll() {
-    return fetchInstance<TStrapiResponseArray<any>>(
+    return fetchInstance<TStrapiResponseArray<unknown>>(
       "/project-category?populate=*",
     );
   },

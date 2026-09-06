@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useRef, useState } from "react";
 import { useLenis } from "lenis/react";
 import { TCommon } from "@/types/common.type";
-import {useHeaderContext} from "@/shared/context/header-context";
+import {useHeaderContext} from "@/shared/context/use-header-context";
 
 const Header = ({ commonData }: { commonData?: TCommon }) => {
   const [scrolled, setScrolled] = useState(false);

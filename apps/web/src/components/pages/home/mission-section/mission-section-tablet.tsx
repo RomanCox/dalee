@@ -20,20 +20,6 @@ export const MissionSectionTablet = memo(({ missionData, openModal }: MissionSec
   const [isSecondImageShow, setIsSecondImageShow] = useState(false);
   const [isThirdImageShow, setIsThirdImageShow] = useState(false);
 
-  let totalCharacters = 1;
-
-  missionData.forEach(item => {
-    if (Array.isArray(item.label)) {
-      totalCharacters += item.label.reduce((sum, part) => sum + (typeof part === "string" ? part.length : 0), 0);
-    } else {
-      totalCharacters += item.label.length;
-    }
-
-    if (item.image) {
-      totalCharacters += 1;
-    }
-  });
-
   const containerRef = useRef(null);
   const imageRef1 = useRef(null);
   const imageRef2 = useRef(null);
@@ -63,7 +49,7 @@ export const MissionSectionTablet = memo(({ missionData, openModal }: MissionSec
           return result;
         }, 0);
 
-        let delayTextAnimation = textAnimationDelay + (row.imagePosition === "start" || row.id === 3 ? (imageAnimationDuration / 2) :
+        const delayTextAnimation = textAnimationDelay + (row.imagePosition === "start" || row.id === 3 ? (imageAnimationDuration / 2) :
           Array.isArray(row.label) && typeof row.label[0] === "string" ? (imageAnimationDuration / 2) : 0);
 
         const delayForLastRow = (index: number) => {

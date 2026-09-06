@@ -1,4 +1,4 @@
-import {memo, useEffect, useLayoutEffect, useRef, useState} from "react";
+import {memo, useEffect, useRef, useState} from "react";
 
 import {IOtherEmployee, SliderTime} from "@/constants/employees";
 

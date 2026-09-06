@@ -16,7 +16,7 @@ interface ServiceCardProps {
 const ServiceCard = forwardRef<
   HTMLDivElement,
   ServiceCardProps
->(({ item, className, top }, ref) => {
+>(({ item, className, top: _top }, ref) => {
   const cardMods = {
     [styles.circleBottomLeft]: item.position === 5,
     [styles.circleTopRight]: item.position === 4,

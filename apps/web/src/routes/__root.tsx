@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/widgets/header/header";
 import { Footer } from "@/components/widgets/footer/footer";
 import { MobileButtons } from "@/components/pages/home/mobile-buttons/mobile-buttons";
-import { HeaderProvider } from "@/shared/context/header-context";
+import { HeaderProvider } from "@/shared/context/header-provider";
 
 import { CommonService } from "@/services/common";
 import { RequestSectionService } from "@/services/request";

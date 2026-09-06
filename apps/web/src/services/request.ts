@@ -10,8 +10,17 @@ export const RequestSectionService = {
   },
 };
 
+type TTelegramSendMessageBody = {
+  chat_id: string;
+  text: string;
+  parse_mode?: "HTML" | "Markdown" | "MarkdownV2";
+  link_preview_options?: {
+    isDisabled?: boolean;
+  };
+};
+
 export const RequestService = {
-  async send(body: any) {
+  async send(body: TTelegramSendMessageBody) {
     return fetch(`${TELEGRAM_BASE_URL}/sendMessage`, {
       body: JSON.stringify(body),
       method: "POST",

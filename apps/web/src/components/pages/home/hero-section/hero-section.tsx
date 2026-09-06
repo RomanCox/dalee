@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "@/shared/ui/image/image";
 import clsx from "clsx";
 import { gsap, useGSAP } from "@/lib/gsapSetup";
@@ -21,33 +21,22 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
-  const [isAppleOS, setIsAppleOS] = useState<boolean>(true);
-
-  useLayoutEffect(() => {
-    const value = isApple();
-    setIsAppleOS(value);
-  }, []);
+  const [isAppleOS] = useState<boolean>(() => isApple());
 
   const container = useRef(null);
   const background = useRef(null);
   const location = useRef(null);
   const arrow = useRef(null);
 
-  const title = useRef<HTMLSpanElement[]>([]);
-  title.current = [];
-  const description = useRef<HTMLSpanElement[]>([]);
-  description.current = [];
+  const title = useRef<(HTMLSpanElement | null)[]>([]);
+  const description = useRef<(HTMLSpanElement | null)[]>([]);
 
-  const addToTitle = (el: HTMLSpanElement) => {
-    if (!title.current.includes(el)) {
-      title.current.push(el);
-    }
+  const addToTitle = (el: HTMLSpanElement | null, index: number) => {
+    title.current[index] = el;
   };
 
-  const addToDescription = (el: HTMLSpanElement) => {
-    if (!description.current.includes(el)) {
-      description.current.push(el);
-    }
+  const addToDescription = (el: HTMLSpanElement | null, index: number) => {
+    description.current[index] = el;
   };
 
   // const mm = gsap.matchMedia();
@@ -60,7 +49,7 @@ const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
         duration: 1,
       })
         .to(
-          title.current,
+          title.current.filter(Boolean),
           {
             y: "0%",
             stagger: 0.05,
@@ -69,7 +58,7 @@ const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
           0,
         )
         .to(
-          description.current,
+          description.current.filter(Boolean),
           {
             y: "0%",
             stagger: 0.05,
@@ -113,18 +102,18 @@ const HeroSection = ({ commonData, homeData }: HeroSectionProps) => {
                     </span>
         </p>
         <h1 className={clsx(styles.title)}>
-          {homeData.heroBlock.title.map((item) => (
+          {homeData.heroBlock.title.map((item, index) => (
             <span key={item} className={styles.mask}>
-                            <span ref={addToTitle} className={clsx(styles.text, { [styles.macOsTitle]: isAppleOS })}>
+                            <span ref={(el) => addToTitle(el, index)} className={clsx(styles.text, { [styles.macOsTitle]: isAppleOS })}>
                                 {item}
                             </span>
                         </span>
           ))}
         </h1>
         <p className={clsx(styles.description, { [styles.macOsDescription]: isAppleOS })}>
-          {homeData.heroBlock.description.map((item) => (
+          {homeData.heroBlock.description.map((item, index) => (
             <span key={item} className={styles.mask}>
-                            <span ref={addToDescription} className={styles.text}>
+                            <span ref={(el) => addToDescription(el, index)} className={styles.text}>
                                 {item}
                             </span>
                         </span>

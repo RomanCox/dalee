@@ -7,7 +7,7 @@ import {clsx} from "clsx";
 import {useLenis} from "lenis/react";
 import {useWindowWidth} from "@react-hook/window-size";
 
-import {useHeaderContext} from "@/shared/context/header-context";
+import {useHeaderContext} from "@/shared/context/use-header-context";
 import {useImageBrightness} from "@/shared/hooks/use-image-brightness";
 import {useCoefficient} from "@/shared/hooks/use-coefficient";
 

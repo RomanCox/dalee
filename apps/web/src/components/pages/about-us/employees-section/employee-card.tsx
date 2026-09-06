@@ -46,7 +46,7 @@ export const EmployeeCard = memo(({employee, activeSlideId, index}: EmployeeCard
     }, [coefficient, onMouseMove, width]);
 
     const glowImageMods = useMemo(() =>
-            !!activeSlideId !== undefined && index !== undefined ?
+            activeSlideId !== undefined && index !== undefined ?
                 {
                     [styles.activeGlowImage]: activeSlideId === index,
                 } : {}

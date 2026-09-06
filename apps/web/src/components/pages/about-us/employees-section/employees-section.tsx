@@ -22,7 +22,7 @@ export const EmployeesSection = memo(({isMobile}: EmployeesSectionProps) => {
 
     const [prevBtn, setPrevBtn] = useState<HTMLButtonElement | null>(null);
     const [nextBtn, setNextBtn] = useState<HTMLButtonElement | null>(null);
-    // @ts-ignore
+    // @ts-expect-error - Swiper здесь React-компонент из swiper/react, а не класс инстанса из swiper
     const swiperRef = useRef<Swiper | null>(null);
 
     const goNext = useCallback(() => {

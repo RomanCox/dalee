@@ -160,11 +160,15 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
   const setSliderIsMoved = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       if (e.clientX < hoveredValue) {
-        !isDragging && setIsMoveLeft(true);
-        !isDragging && setIsMoveRight(false);
+        if (!isDragging) {
+          setIsMoveLeft(true);
+          setIsMoveRight(false);
+        }
       } else if (e.clientX > window.innerWidth - hoveredValue) {
-        !isDragging && setIsMoveRight(true);
-        !isDragging && setIsMoveLeft(false);
+        if (!isDragging) {
+          setIsMoveRight(true);
+          setIsMoveLeft(false);
+        }
       } else {
         setIsMoveLeft(false);
         setIsMoveRight(false);
