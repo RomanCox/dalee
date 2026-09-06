@@ -402,10 +402,10 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
               className={clsx(styles.blurredImage, {
                 [styles.isHoveredBlurredImage]: isHovered,
               })}
-              src={generateImageUrl(activeSlide.image.data.attributes.url)}
+              src={generateImageUrl(activeSlide.image.url)}
               alt={activeSlide.title}
-              width={activeSlide.image.data.attributes.width}
-              height={activeSlide.image.data.attributes.height}
+              width={activeSlide.image.width}
+              height={activeSlide.image.height}
               style={{
                 "--animationDuration": `${ANIMATION_DURATION}ms`,
               }}
@@ -487,15 +487,15 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
                     </div>
                   )}
 
-                  {slide.image?.data ? (
+                  {slide.image ? (
                     <Image
                       className={clsx(styles.image, {
                         [styles.hoveredBtn]: isHovered,
                       })}
-                      src={generateImageUrl(slide.image.data.attributes.url)}
+                      src={generateImageUrl(slide.image.url)}
                       alt={slide.title}
-                      width={slide.image.data.attributes.width}
-                      height={slide.image.data.attributes.height}
+                      width={slide.image.width}
+                      height={slide.image.height}
                       priority
                     />
                   ) : (
@@ -530,7 +530,7 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
                 {slidesData.map((slide, index) => (
                   <SwiperSlide key={slide.title + index}>
                     <div className={styles.slideWrapper}>
-                      {slide.image?.data ? (
+                      {slide.image ? (
                         <>
                           <div className={styles.slideTextWrapper}>
                             <span>{slide.title}</span>
@@ -548,12 +548,10 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
                             className={clsx(styles.image, {
                               [styles.hoveredBtn]: activeSlideId === slide.id,
                             })}
-                            src={generateImageUrl(
-                              slide.image.data.attributes.url,
-                            )}
+                            src={generateImageUrl(slide.image.url)}
                             alt={slide.title}
-                            width={slide.image.data.attributes.width}
-                            height={slide.image.data.attributes.height}
+                            width={slide.image.width}
+                            height={slide.image.height}
                             priority
                           />
                         </>

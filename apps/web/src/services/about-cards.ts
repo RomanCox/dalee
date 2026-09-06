@@ -1,10 +1,10 @@
 import { TAboutCard } from "@/types/about-card.type";
 import { TStrapiCollectionResponse } from "@/types/strapi.type";
-import { newFetchInstance } from "./config";
+import { fetchInstance } from "./config";
 
 export const AboutCardsService = {
   async getAll() {
-    return newFetchInstance<TStrapiCollectionResponse<TAboutCard>>(
+    return fetchInstance<TStrapiCollectionResponse<TAboutCard>>(
       "/about-cards?populate=*",
     );
   },

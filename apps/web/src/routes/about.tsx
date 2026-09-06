@@ -26,7 +26,7 @@ function AboutUsPage() {
     ]).then(([requestSectionResponse, aboutCardsResponse]) => {
       if (cancelled) return;
 
-      setRequestSection(requestSectionResponse.data.attributes);
+      setRequestSection(requestSectionResponse.data);
 
       const cards = aboutCardsResponse.data
         .filter((card) => card.type !== "title" && card.aboutUsPageOrder)

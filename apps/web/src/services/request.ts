@@ -1,10 +1,10 @@
 import { TRequestSection } from "@/types/request.type";
-import { TStrapiResponse } from "@/types/strapi.type";
+import { TStrapiSingleResponse } from "@/types/strapi.type";
 import { TELEGRAM_BASE_URL, fetchInstance } from "./config";
 
 export const RequestSectionService = {
   async getAll() {
-    return fetchInstance<TStrapiResponse<TRequestSection>>(
+    return fetchInstance<TStrapiSingleResponse<TRequestSection>>(
       "/request-section?populate=*",
     );
   },

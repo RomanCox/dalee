@@ -27,7 +27,7 @@ function RootComponent() {
 
   useEffect(() => {
     CommonService.getAll().then((response) => setCommonData(response.data));
-    RequestSectionService.getAll().then((response) => setRequestSection(response.data.attributes));
+    RequestSectionService.getAll().then((response) => setRequestSection(response.data));
   }, []);
 
   return (

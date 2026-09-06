@@ -56,21 +56,16 @@ function Home() {
         );
 
         const transformedProjects: TProject[] = projectsResponse.data
-          .filter((project) => !project.attributes.onlyShowOnProjectsPage)
+          .filter((project) => !project.onlyShowOnProjectsPage)
           .map((project) => ({
             ...project,
-            attributes: {
-              ...project.attributes,
-              project_categories: project.attributes.project_categories?.data.map(
-                (category) => category.attributes.title,
-              ),
-              teammates: project.attributes.teammates?.data.map(
-                (teammate) => teammate.attributes.name,
-              ),
-            },
+            project_categories: project.project_categories?.map(
+              (category) => category.title,
+            ),
+            teammates: project.teammates?.map((teammate) => teammate.name),
           }))
-          .sort((a, b) => a.attributes.homePageOrder - b.attributes.homePageOrder)
-          .map((item) => ({ ...item.attributes, id: item.attributes.homePageOrder }))
+          .sort((a, b) => a.homePageOrder - b.homePageOrder)
+          .map((item) => ({ ...item, id: item.homePageOrder }))
           .map((item) => ({
             ...item,
             id:
@@ -106,7 +101,7 @@ function Home() {
             })),
         );
 
-        setRequestSection(requestSectionResponse.data.attributes);
+        setRequestSection(requestSectionResponse.data);
       },
     );
 

@@ -1,9 +1,9 @@
-import {TStrapiMedia, TStrapiResponseArray} from "./strapi.type";
+import {NewTStrapiMedia, TStrapiResponseArray} from "./strapi.type";
 
 export interface IITem {
   id: number;
   description: string;
-  media: TStrapiMedia;
+  media: NewTStrapiMedia;
 }
 
 interface ISection {
@@ -14,35 +14,23 @@ interface ISection {
 
 interface ICategory {
   id: number;
-  attributes: {
-    title: string;
-  }
-}
-
-interface ICategories {
-  data: ICategory[];
+  title: string;
 }
 
 interface ITeammate {
   id: number;
-  attributes: {
-    name: string;
-    type: string;
-    role: string;
-  }
-}
-
-interface ITeammates {
-  data: ITeammate[];
+  name: string;
+  type: string;
+  role: string;
 }
 
 export type TProjectResponse = {
   title: string;
   area?: string;
   year?: string;
-  image?: TStrapiMedia;
+  image?: NewTStrapiMedia | null;
   location?: string;
-  project_categories?: ICategories;
+  project_categories?: ICategory[];
   status?: "Реализация" | "";
   customer?: string;
   empty?: boolean;
@@ -51,7 +39,7 @@ export type TProjectResponse = {
   projectsPageOrder: number;
   slug: string;
   sections: ISection[];
-  teammates?: ITeammates;
+  teammates?: ITeammate[];
 };
 
 export type TProject = Omit<TProjectResponse, "project_categories" | "teammates"> & {

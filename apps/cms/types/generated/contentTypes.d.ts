@@ -551,6 +551,37 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRequestSectionRequestSection
+  extends Struct.SingleTypeSchema {
+  collectionName: 'request_sections';
+  info: {
+    displayName: 'Request Section';
+    pluralName: 'request-sections';
+    singularName: 'request-section';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::request-section.request-section'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    successMessage: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
@@ -1100,6 +1131,7 @@ declare module '@strapi/strapi' {
       'api::common.common': ApiCommonCommon;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::project.project': ApiProjectProject;
+      'api::request-section.request-section': ApiRequestSectionRequestSection;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

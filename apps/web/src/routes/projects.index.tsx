@@ -17,7 +17,7 @@ function ProjectsPage() {
 
     RequestSectionService.getAll().then((response) => {
       if (cancelled) return;
-      setRequestSection(response.data.attributes);
+      setRequestSection(response.data);
     });
 
     return () => {

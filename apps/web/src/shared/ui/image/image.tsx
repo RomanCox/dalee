@@ -49,9 +49,11 @@ const Image = forwardRef(
         sizes={srcSet ? sizes : undefined}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : undefined}
         style={{ ...fillStyle, ...style }}
         {...rest}
+        // React 18 не знает camelCase fetchPriority (появился в 19) — нужен атрибут в нижнем
+        // регистре, а @types/react 18 не типизирует его вовсе, поэтому прокидываем как есть.
+        {...(priority ? { fetchpriority: "high" } : {})}
       />
     );
   },

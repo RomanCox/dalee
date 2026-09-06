@@ -1,10 +1,10 @@
 import { TService } from "@/types/service.type";
 import { TStrapiCollectionResponse } from "@/types/strapi.type";
-import { newFetchInstance } from "./config";
+import { fetchInstance } from "./config";
 
 export const ServicesService = {
   async getAll() {
-    return newFetchInstance<TStrapiCollectionResponse<TService>>(
+    return fetchInstance<TStrapiCollectionResponse<TService>>(
       "/services?populate=*",
     );
   },
