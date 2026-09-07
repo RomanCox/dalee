@@ -5,9 +5,17 @@ const image2 = "/images/mission/mission2.jpg";
 export const coloringInterval = 100;
 export const imageAnimationDuration = 1000;
 
+// В Next.js картинка внутри label различалась через next/image (StaticImageData —
+// объект, не string). В Vite статический импорт даёт обычную строку, поэтому
+// typeof item === "string" перестал отличать текст от картинки — заворачиваем
+// картинку в объект, чтобы различие осталось на уровне типа.
+export interface IMissionImageItem {
+    image: string,
+}
+
 export interface IMissionItem {
     id: number,
-    label: string | Array<string>,
+    label: string | Array<string | IMissionImageItem>,
     image?: string,
     imagePosition?: "start" | "end" | "center",
 }
@@ -35,7 +43,7 @@ export const missionData: IMissionItem[] = [
     },
     {
         id: 4,
-        label: ["В ИСТОРИЧЕСКУЮ", image2, "ТКАНЬ ГОРОДОВ."],
+        label: ["В ИСТОРИЧЕСКУЮ", { image: image2 }, "ТКАНЬ ГОРОДОВ."],
         imagePosition: "center",
     },
 ];

@@ -1,5 +1,6 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import ReactLenis from "lenis/react";
 
 import Header from "@/components/widgets/header/header";
 import { Footer } from "@/components/widgets/footer/footer";
@@ -31,15 +32,17 @@ function RootComponent() {
   }, []);
 
   return (
-    <HeaderProvider>
-      <Header commonData={commonData} />
-      <main className={styles.main}>
-        <Outlet />
-      </main>
-      {requestSection && (
-        <MobileButtons commonData={commonData} requestSection={requestSection} />
-      )}
-      <Footer commonData={commonData} />
-    </HeaderProvider>
+    <ReactLenis root options={{ lerp: 0.05, duration: 1, smoothWheel: true }}>
+      <HeaderProvider>
+        <Header commonData={commonData} />
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+        {requestSection && (
+          <MobileButtons commonData={commonData} requestSection={requestSection} />
+        )}
+        <Footer commonData={commonData} />
+      </HeaderProvider>
+    </ReactLenis>
   );
 }

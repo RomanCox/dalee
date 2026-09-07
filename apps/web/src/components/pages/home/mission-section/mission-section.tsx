@@ -215,12 +215,12 @@ export const MissionSection = memo(({ missionData }: MissionSectionProps) => {
                   } else {
                     return (
                       <span
-                        key={String(item)}
+                        key={item.image}
                         className={clsx(styles.image_container, {
                           [styles.displayedImage]: isThirdImageShow,
                         })}
                         style={{ "--duration": `${imageAnimationDuration}ms` }}>
-                        <Image ref={imageRef3} src={item} alt="" aria-hidden />
+                        <Image ref={imageRef3} src={item.image} alt="" aria-hidden />
                       </span>
                     );
                   }

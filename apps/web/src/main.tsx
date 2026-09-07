@@ -4,7 +4,7 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 
 import { routeTree } from "./routeTree.gen";
 
-// scrollRestoration отключён: скроллом будет управлять Lenis (подключается отдельным шагом)
+// scrollRestoration отключён: скроллом управляет Lenis (см. __root.tsx)
 const router = createRouter({ routeTree, scrollRestoration: false });
 
 declare module "@tanstack/react-router" {

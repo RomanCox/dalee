@@ -5,7 +5,12 @@ import { NewTStrapiMedia } from "@/types/strapi.type";
 
 type TImageSrc = string | NewTStrapiMedia | null | undefined;
 
-const resolveUrl = (url: string) => (url.startsWith("http") ? url : generateImageUrl(url));
+// Strapi-медиа (formats.*.url, src-объект) всегда отдаёт относительный путь —
+// его нужно донормализовать до VITE_STRAPI_URL. Простая строка в src — это
+// либо локальный /public-путь (используется как есть), либо уже готовый
+// абсолютный URL, который вызывающий код сам собрал через generateImageUrl
+// (см. hero-section.tsx) — трогать её здесь не нужно.
+const resolveStrapiUrl = (url: string) => (url.startsWith("http") ? url : generateImageUrl(url));
 
 const buildSrcSet = (media: NewTStrapiMedia): string | undefined => {
   const { formats } = media;
@@ -14,7 +19,7 @@ const buildSrcSet = (media: NewTStrapiMedia): string | undefined => {
   const entries = [formats.thumbnail, formats.small, formats.medium, formats.large].filter(Boolean);
   if (!entries.length) return undefined;
 
-  return entries.map((format) => `${resolveUrl(format.url)} ${format.width}w`).join(", ");
+  return entries.map((format) => `${resolveStrapiUrl(format.url)} ${format.width}w`).join(", ");
 };
 
 interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "ref"> {
@@ -34,7 +39,7 @@ const Image = forwardRef(
     if (!src) return null;
 
     const isMedia = typeof src === "object";
-    const resolvedSrc = isMedia ? resolveUrl(src.url) : resolveUrl(src);
+    const resolvedSrc = isMedia ? resolveStrapiUrl(src.url) : src;
     const srcSet = isMedia ? buildSrcSet(src) : undefined;
 
     const fillStyle: CSSProperties | undefined = fill
