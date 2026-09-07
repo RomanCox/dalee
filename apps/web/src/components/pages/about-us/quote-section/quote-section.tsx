@@ -63,7 +63,13 @@ export const QuoteSection = memo(({ quoteSectionData }: QuoteSectionProps) => {
 
   useGSAP(
     () => {
-      gsap.to([imageRef1.current, imageRef2.current], {
+      // Обе картинки рендерятся условно (image-элемент в массиве label /
+      // row.id === 3 && row.image) — на момент монтирования какая-то из
+      // них может быть ещё не в DOM, null в таргетах роняет gsap.
+      const targets = [imageRef1.current, imageRef2.current].filter(Boolean);
+      if (!targets.length) return;
+
+      gsap.to(targets, {
         scrollTrigger: {
           scrub: true,
         },
@@ -135,13 +141,13 @@ export const QuoteSection = memo(({ quoteSectionData }: QuoteSectionProps) => {
                   } else {
                     return (
                       <span
-                        key={String(item)}
+                        key={item.image}
                         className={clsx(styles.image_container, {
                           [styles.displayedImage]: isFirstImageShow,
                         })}
                         style={{ "--duration": `${imageAnimationDuration}ms` }}
                       >
-                                                <Image ref={imageRef1} src={item} alt="" aria-hidden />
+                                                <Image ref={imageRef1} src={item.image} alt="" aria-hidden />
                                             </span>
                     );
                   }

@@ -82,10 +82,15 @@ export const TitleSection = memo(({ isMobile, aboutUsCards, aboutUsData }: Title
             duration: 1,
           },
           0,
-        )
-        .to(arrowRef.current, {
+        );
+
+      // Стрелка есть только в мобильной вёрстке (isMobile) — на десктопе
+      // arrowRef.current остаётся null, добавлять его в таймлайн нельзя.
+      if (arrowRef.current) {
+        tl.to(arrowRef.current, {
           opacity: 1,
         });
+      }
     },
     {
       scope: containerRef,

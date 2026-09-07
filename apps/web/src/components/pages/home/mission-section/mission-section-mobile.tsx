@@ -50,7 +50,12 @@ const MissionSectionMobile = ({missionData, openModal}: MissionSectionMobileProp
 
     useGSAP(
         () => {
-            gsap.to([imageRef1.current, imageRef2.current, imageRef3.current], {
+            // Картинки рендерятся условно (row.imagePosition === "start"/"end" && row.image) —
+            // на момент монтирования какая-то из них может быть не в DOM, null в таргетах роняет gsap.
+            const targets = [imageRef1.current, imageRef2.current, imageRef3.current].filter(Boolean);
+            if (!targets.length) return;
+
+            gsap.to(targets, {
                 scrollTrigger: {
                     scrub: true,
                 },

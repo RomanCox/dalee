@@ -522,7 +522,10 @@ export const ProjectsSection = memo(({slidesData}: ProjectsSectionProps) => {
                 initialSlide={3}
                 spaceBetween={20}
                 centeredSlides={true}
-                loop={true}
+                // loop у Swiper требует ощутимый запас слайдов сверх видимых
+                // (иначе Loop Warning в консоль и сам режим тихо отключается) —
+                // при небольшом каталоге проектов остаётся rewind как замена.
+                loop={slidesData.length > 7}
                 grabCursor={true}
                 pagination={true}
                 lazyPreloadPrevNext={6}

@@ -29,7 +29,9 @@ export const AboutMobile = memo(
           initialSlide={0}
           spaceBetween={10}
           centeredSlides={true}
-          loop={true}
+          // loop у Swiper требует запас слайдов сверх видимых — при малом
+          // числе карточек «О нас» из CMS остаётся rewind как замена.
+          loop={aboutCards.length > 4}
           grabCursor={true}
           pagination={true}
           lazyPreloadPrevNext={4}
