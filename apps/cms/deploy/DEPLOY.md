@@ -1,29 +1,24 @@
 # Деплой Strapi на VPS (romancox.dev)
 
-Контекст: VPS DigitalOcean, 1 vCPU / 1 ГБ RAM / 25 ГБ диск, уже занят VPN
-(`admin.romancox.dev`) и telegram-ботом. Свободной памяти немного, поэтому:
+Контекст: новый VPS, 4 vCPU / 8 ГБ RAM / 80 ГБ диск, на нём же VPN
+(`admin.romancox.dev`) и telegram-бот (не в этом репозитории). Памяти и CPU
+достаточно, поэтому в отличие от старого 1 ГБ дроплета:
 
-- **без Docker** — лишний оверхед на 1 ГБ;
-- **SQLite**, не Postgres — отдельный процесс БД не нужен, диск персистентный;
-- **сборка admin-панели — НЕ на VPS** (`strapi build` кратковременно ест 2–4 ГБ
-  и может уронить OOM'ом заодно VPN/бота), собираем локально и заливаем
-  готовый билд;
-- процесс держит **pm2** с лимитом памяти (`ecosystem.config.cjs`), не systemd
-  напрямую — так проще смотреть логи и делать `pm2 restart`.
+- **Strapi запускается в Docker** (`Dockerfile`, `docker-compose.yml` в этой
+  папке) — свежая версия с изоляцией зависимостей и предсказуемым откатом на
+  предыдущий образ;
+- **сборка admin-панели — прямо на VPS**, во время `docker compose build`
+  (`strapi build` внутри build-стадии). Раньше собирали локально и заливали
+  готовый `dist/`, потому что сборка на 1 ГБ дроптете могла уронить OOM'ом
+  VPN/бота — на 8 ГБ это не проблема;
+- **SQLite**, не Postgres — отдельный процесс БД всё ещё не нужен, файл
+  персистентный через volume;
+- супервизия процесса — `restart: unless-stopped` в compose вместо pm2;
+  `ecosystem.config.cjs` в этой папке больше не используется (оставлен как
+  референс, можно удалить).
 
-## 0. Разово: swap про запас
-
-Сейчас на сервере уже 1 ГБ swap и он наполовину занят в простое. Добавляем
-ещё 2 ГБ подушки безопасности (диска 25 ГБ, место есть):
-
-```bash
-sudo fallocate -l 2G /swapfile2
-sudo chmod 600 /swapfile2
-sudo mkswap /swapfile2
-sudo swapon /swapfile2
-echo '/swapfile2 none swap sw 0 0' | sudo tee -a /etc/fstab
-free -h   # проверить, что Swap подрос
-```
+Своп на этом VPS не заводили отдельно — 8 ГБ RAM с запасом под один
+Strapi-контейнер (`mem_limit: 1g` в `docker-compose.yml`) плюс VPN и бота.
 
 ## 1. Разово: nginx + HTTPS для cms.romancox.dev
 
@@ -50,7 +45,7 @@ Certbot сам допишет `listen 443 ssl` и редирект с 80 на 44
 ```bash
 cd /srv/cms   # путь, куда будем заливать проект — создать заранее: sudo mkdir -p /srv/cms && sudo chown $USER /srv/cms
 cat > .env <<EOF
-HOST=127.0.0.1
+HOST=0.0.0.0
 PORT=1337
 APP_KEYS=$(openssl rand -base64 32),$(openssl rand -base64 32)
 API_TOKEN_SALT=$(openssl rand -base64 32)
@@ -62,26 +57,31 @@ DATABASE_FILENAME=.tmp/data.db
 EOF
 ```
 
-`HOST=127.0.0.1` — важно: Strapi слушает только локально, наружу торчит
-только nginx на 443. Порт 1337 наружу не открываем (`ufw` не должен его
-разрешать).
+`HOST=0.0.0.0` — внутри контейнера это нормально: наружу торчит не сам
+Strapi, а docker, и `docker-compose.yml` публикует порт как
+`127.0.0.1:1337:1337` — то есть биндит его на loopback *хоста*. Снаружи VPS
+1337 всё равно не виден, доступ только через nginx на 443. Если случайно
+поставить здесь `127.0.0.1`, будет хуже — Strapi послушает loopback внутри
+контейнера, и даже локальный проброс порта не достучится (сервис не
+поднимется, `docker compose logs cms` покажет, что коннекты не доходят).
+
+Также один раз создать папки под тома (иначе Docker создаст их от root, и
+Strapi внутри контейнера не сможет в них писать):
+
+```bash
+mkdir -p /srv/cms/data/tmp /srv/cms/data/uploads
+```
 
 ## 3. Каждый деплой
 
-Локально (или в CI), из `apps/cms`:
-
-```bash
-pnpm install
-pnpm build          # strapi build — собирается на вашей машине, не на VPS
-```
-
-Дальше — заливка кода на сервер, способ зависит от ОС.
+Заливка кода на сервер, способ зависит от ОС (собирать локально не нужно —
+`docker compose build` собирает admin-панель и компилирует TS прямо на VPS).
 
 ### macOS / Linux — rsync
 
 ```bash
 rsync -avz --delete \
-  --exclude node_modules --exclude .tmp --exclude .env --exclude .cache \
+  --exclude node_modules --exclude .tmp --exclude .env --exclude .cache --exclude data \
   ./ user@cms-host:/srv/cms/
 ```
 
@@ -94,7 +94,7 @@ PowerShell портит бинарный поток при передаче ме
 придёт битым (`gzip: stdin: not in gzip format`).
 
 ```bash
-tar --exclude=node_modules --exclude=.tmp --exclude=.env --exclude=.cache \
+tar --exclude=node_modules --exclude=.tmp --exclude=.env --exclude=.cache --exclude=data \
   -czf - . | ssh user@cms-host "tar -xzf - -C /srv/cms"
 ```
 
@@ -102,14 +102,8 @@ tar --exclude=node_modules --exclude=.tmp --exclude=.env --exclude=.cache \
 
 ```bash
 cd /srv/cms
-pnpm install --prod --frozen-lockfile   # только прод-зависимости, без пересборки admin-панели
-
-pm2 start deploy/ecosystem.config.cjs   # первый запуск
-# или после обновления кода:
-pm2 restart cms
-
-pm2 save            # чтобы pm2 startup поднимал процесс после перезагрузки VPS
-pm2 startup         # один раз — выведет команду для systemd, выполнить её
+docker compose up -d --build   # первый запуск и любой редеплой после обновления кода
+docker compose logs -f cms     # проверить, что стартовал без ошибок
 ```
 
 ## 4. Бэкап данных
@@ -120,20 +114,19 @@ SQLite-файл — единственный источник контента, 
 # разово в cron на сервере, например ежедневно
 crontab -e
 # добавить:
-0 3 * * * cp /srv/cms/.tmp/data.db /srv/cms-backups/data-$(date +\%F).db
+0 3 * * * cp /srv/cms/data/tmp/data.db /srv/cms-backups/data-$(date +\%F).db
 ```
 
 Папку `/srv/cms-backups` создать заранее и не забывать иногда скачивать
 куда-то за пределы этого же VPS (диск один — при его потере пропадёт и бэкап).
 
-## 5. Проверка памяти после первого запуска
+## 5. Проверка после первого запуска
 
 ```bash
-free -h
-pm2 monit
+docker compose ps
+docker stats cms   # разово посмотреть, во сколько памяти/CPU уложился реальный трафик
 ```
 
-Если `cms` начинает часто перезапускиваться по `max_memory_restart` — либо
-поднимайте лимит в `ecosystem.config.cjs`, либо это сигнал, что 1 ГБ реально
-мало и стоит смотреть на апгрейд дроплета (не входит в "бесплатно", но
-DigitalOcean позволяет resize без пересоздания сервера).
+Лимит `mem_limit: 1g` в `docker-compose.yml` — если контейнер упирается в
+него и Docker его убивает (`docker compose ps` покажет restart), поднимите
+лимит — на 8 ГБ RAM запас большой.

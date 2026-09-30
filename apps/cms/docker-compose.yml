@@ -1,0 +1,16 @@
+# Запуск на VPS: docker compose up -d --build
+# nginx (deploy/nginx.cms.conf) продолжает проксировать на 127.0.0.1:1337 — конфиг не меняется.
+services:
+  cms:
+    build: .
+    image: dalee-cms:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - '127.0.0.1:1337:1337'
+    volumes:
+      # sqlite-файл и загруженные медиа — единственные данные, которые не переживут
+      # пересборку образа, если их не вынести томами наружу.
+      - ./data/tmp:/app/.tmp
+      - ./data/uploads:/app/public/uploads
+    mem_limit: 1g
